@@ -1,12 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const connectDB = require('./db')
+require("dotenv").config({ path: "./.env" });
 
 app.use(express.json());
 
-mongoose.connect("",{
-    useNewUrlParser: true,
-})
+connectDB();
+
+// mongoose.connect("",{
+//     useNewUrlParser: true,
+// })
 
 app.get('/', (req, res) => {
     res.send("API is running");

@@ -1,53 +1,55 @@
 /* -------------------------------------------------------------------------- */
 /*                                Imports here                                */
 /* -------------------------------------------------------------------------- */
+//TODO: Test all routes STATUS: Working
+
 
 //@desc   create new user
-//@route  POST /register/
+//@route  POST /user/register/
 //@access Public
 // Register new user
 const registerUser = async (req, res, next) => {
-    res.status(200).send("Create beneficiary user stub")
+    res.status(200).send("Create user stub")
 }
 
 //@desc   view account
-//@route  GET /account/:userEmail
+//@route  GET /user/account/:userEmail
 //@access Public
 // view account
 const showAccount = async (req, res, next) => {
-    res.status(200).send("Get beneficiary user by id stub")
+    res.status(200).send("View account stub")
 }
 
 //@desc   login user
-//@route  GET /user/:userEmail
+//@route  GET /user/login/:userEmail
 //@access Public
 //login user
 const loginUser = async (req, res, next) => {
-    res.status(200).send("Login beneficiary user stub")
+    res.status(200).send("Login user stub")
 }
 
 //@desc   logout user
-//@route  GET /user/:userEmail
+//@route  GET /user/logout/:userEmail
 //@access Public
 //logout user
 const logoutUser = async (req, res, next) => {
-    res.status(200).send("Logout beneficiary user stub")
+    res.status(200).send("Logout user stub")
 }
 
 //@desc   edit user details
-//@route  GET /editUser/:userEmail
+//@route  GET /user/editUser/:userEmail
 //@access Public
 //edit user details
 const editUser = async (req, res, next) => {
-    res.status(200).send("Edit beneficiary user stub")
+    res.status(200).send("Edit user stub")
 }
 
 //@desc   delete user
-//@route  DELETE /deleteUser/:userEmail
+//@route  DELETE /user/deleteUser/:userEmail
 //@access Public
 //delete user
 const deleteUser = async (req, res, next) => {
-    res.status(200).send("Delete beneficiary user stub")
+    res.status(200).send("Delete user stub")
 }
 
 /* -------------------------- ANCHOR module section ------------------------- */

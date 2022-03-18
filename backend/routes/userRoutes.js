@@ -11,39 +11,39 @@ const {
 } = require('../controller/userController')
 
 //@desc   create new user
-//@route  POST /register
+//@route  POST /user/register
 //@access Public
 // Register new user
 router.post('/register', registerUser)
 
 //@desc   view account
-//@route  GET /account/:userEmail
+//@route  GET /user/account/:userEmail
 //@access Public
 // view account
 router.get('/account/:userEmail', showAccount)
 
 
 //@desc   login user
-//@route  GET /user/:userEmail
+//@route  GET /user/login/:userEmail
 //@access Public
 //login user
-router.get('/user/:userEmail', loginUser)
+router.get('/login/:userEmail', loginUser)
 
 //@desc   logout user
-//@route  GET /user/:userEmail
+//@route  GET /user/logout/:userEmail
 //@access Public
 //logout user
-router.get('/user/:userEmail', logoutUser)
+router.get('/logout/:userEmail', logoutUser)
 
 
 //@desc   edit user details
-//@route  GET /editUser/:userEmail
+//@route  GET /user/editUser/:userEmail
 //@access Public
 //edit user details
 router.get('/editUser/:userEmail', editUser)
 
 //@desc   delete user
-//@route  DELETE /deleteUser/:userEmail
+//@route  DELETE /user/deleteUser/:userEmail
 //@access Public
 //delete user
 router.delete('/deleteUser/:userEmail', deleteUser)

@@ -5,11 +5,11 @@ const connectDB = require('./db')
 require("dotenv").config({ path: "./.env" });
 
 /* ------------------------------ get routes ----------------------------- */
-const usersRoutes = require('./routes/userRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 /* --------------------------------- routes --------------------------------- */
 //list of users
-app.use("/users", usersRoutes)
+app.use("/user", userRoutes)
 
 
 // creates express application

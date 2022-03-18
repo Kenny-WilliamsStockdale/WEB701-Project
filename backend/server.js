@@ -7,12 +7,15 @@ require("dotenv").config({ path: "./.env" });
 /* ------------------------------ get routes ----------------------------- */
 const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes')
+const cartRoutes = require('./routes/cartRoutes')
 
 /* --------------------------------- routes --------------------------------- */
 //list of user
 app.use("/user", userRoutes)
 //list of product
 app.use("/product", productRoutes)
+//List of cart
+app.use("/cart", cartRoutes)
 
 
 // creates express application

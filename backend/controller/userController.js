@@ -37,7 +37,7 @@ const logoutUser = async (req, res, next) => {
 }
 
 //@desc   edit user details
-//@route  GET /user/editUser/:userEmail
+//@route  PUT /user/editUser/:userEmail
 //@access Public
 //edit user details
 const editUser = async (req, res, next) => {

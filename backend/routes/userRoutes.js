@@ -40,7 +40,7 @@ router.get('/logout/:userEmail', logoutUser)
 //@route  GET /user/editUser/:userEmail
 //@access Public
 //edit user details
-router.get('/editUser/:userEmail', editUser)
+router.put('/editUser/:userEmail', editUser)
 
 //@desc   delete user
 //@route  DELETE /user/deleteUser/:userEmail

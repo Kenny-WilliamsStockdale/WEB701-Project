@@ -9,6 +9,7 @@ const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes')
 const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes')
+const categoryRoutes = require('./routes/categoryRoutes')
 
 /* --------------------------------- routes --------------------------------- */
 //list of user
@@ -19,6 +20,8 @@ app.use("/product", productRoutes)
 app.use("/cart", cartRoutes)
 //List of order
 app.use("/order", orderRoutes);
+//List of category
+app.use("/category", categoryRoutes);
 
 
 // creates express application

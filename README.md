@@ -1,5 +1,8 @@
 # WEB701-Project
 
+## Project Planning
+The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web701-project
+
 ## How to start the application
 1. Use `npm start` to launch the backend application only.
 2. Use `npm run client` to launch the frontend application only.

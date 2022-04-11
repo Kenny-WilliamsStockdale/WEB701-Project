@@ -9,3 +9,7 @@
 main {
     min-height: 80vh
 }
+
+.col {
+    color: rgb(120, 120, 120);
+}

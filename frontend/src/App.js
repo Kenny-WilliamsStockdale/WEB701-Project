@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// ------ ANCHOR IMPORT SECTION ------
+// import pages/screens
+import React from 'react'
+import "./App.css";
+import Footer from "./components/footer/footer";
+import Header from "./components/header/header";
+import LandingPage from "./screens/landingPage/landingPage";
+import LoginPage from "./screens/loginPage/loginPage";
+import SignupPage from "./screens/signupPage/signupPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// ------ ANCHOR SETUP SCREEN SECTION ------
+// screen layout including routes/navigation to all pages
+const App = () => (
+  <Router>
+    <Header />
+    <main>
+      <Routes>
+        <Route path="/" element={<LandingPage />} exact />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </main>
+    <Footer />
+  </Router>
+);
 
 export default App;

@@ -2,7 +2,7 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React from 'react'
-
+import './Landing.css'
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
@@ -10,7 +10,7 @@ import React from 'react'
 const Landing = () => {
   return (
     <div>
-      <h1>Landing</h1>
+      <h1 className="intro-text">Welcome to Stuff and Things Clothing Charity</h1>
     </div>
   )
 }

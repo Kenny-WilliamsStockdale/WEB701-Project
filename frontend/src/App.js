@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Landing from './pages/Landing';
 import Product from './pages/Product';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="/" element={<Landing />} exact />
         <Route path="/Product" element={<Product />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
       </Routes>
     </main>
     <Footer />

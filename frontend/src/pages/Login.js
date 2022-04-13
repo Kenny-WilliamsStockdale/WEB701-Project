@@ -27,7 +27,7 @@ const Login = () => {
       </label>
     </div>
     <button className="w-100 btn btn-lg btn-primary" id="submit-button" type="submit">Sign in</button>
-    <Link className="signup-link"to="/">New Customer? Register</Link>
+    <Link className="signup-link"to="/Signup">New Customer? Register</Link>
   </form>
 </main>
   )

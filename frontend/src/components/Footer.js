@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
       </footer>
       <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; SaTCC 2022</small></div>
+        <div class="container"><small>&copy; SaTCC 2022. All rights reserved.</small></div>
       </div>
     </footer>
   )

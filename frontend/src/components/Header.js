@@ -2,7 +2,7 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container} from 'react-bootstrap';
 import './Header.css'
 /* -------------------------------------------------------------------------- */
@@ -23,9 +23,11 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
-            <Nav.Link id="nav-product" href="/products">Products
+            <Nav.Link>
+            <Link to="/Product" id="nav-product">Product</Link>
             </Nav.Link>
-            <Nav.Link id="nav-cart" href="/cart">My cart
+            <Nav.Link>
+            <Link to="/Cart" id="nav-cart">Cart</Link>
             </Nav.Link>
             {/* {userInfo ? (
               <NavDropdown
@@ -58,8 +60,9 @@ const Header = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             ) : ( */}
-              <Nav.Link id="nav-login" href="/login">Log In
-              </Nav.Link>
+            <Nav.Link>
+            <Link to="/Login" id="nav-login">Login</Link>
+            </Nav.Link>
             {/* ) */}
           </Nav>
         </Navbar.Collapse>

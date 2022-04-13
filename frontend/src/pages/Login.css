@@ -1,0 +1,62 @@
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#login-title {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 1.8rem;
+}
+
+#floatingPassword:focus{
+  border-color: #f7d564;
+}
+
+#floatingInput:focus{
+  border-color: #f7d564;
+}
+
+#submit-button {
+  background-color: #f7d564;
+  border-color: #f7d564;
+  color:black;
+  margin-bottom: 0.5rem;
+}
+
+#submit-button:hover {
+  background-color: #e9ca62;
+  border-color: #e9ca62;
+}
+
+.signup-link{
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #787878;
+}
+
+.signup-link:hover{
+  color: #787878;
+}

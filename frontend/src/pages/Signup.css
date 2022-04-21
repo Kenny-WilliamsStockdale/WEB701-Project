@@ -65,3 +65,7 @@
 .signup-link:hover{
   color: #787878;
 }
+
+#beneficiary-check {
+  margin-left: 1rem;
+}

@@ -48,7 +48,25 @@ const registerUser = async (req, res, next) => {
 //@access Public
 // view account
 const showAccount = async (req, res, next) => {
-    res.status(200).send("View account stub")
+    const { emailAddress } = req.body;
+    try {
+        const user = await users.findOne({ emailAddress: emailAddress });
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found'
+            });
+        }
+        res.status(200).json({
+            success: true,
+            data: user,
+            message: 'User found'
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
 
 //@desc   login user
@@ -88,7 +106,24 @@ const loginUser = async (req, res, next) => {
 //@access Public
 //logout user
 const logoutUser = async (req, res, next) => {
-    res.status(200).send("Logout user stub")
+    const { emailAddress } = req.body;
+    try {
+        const user = await users.findOne({ emailAddress: emailAddress });
+        if (!user) {
+            return res.status(400).json({
+                message: 'User does not exist'
+            });
+        }
+        res.status(200).json({
+            success: true,
+            data: user,
+            message: 'User logged out successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
 
 //@desc   edit user details
@@ -96,7 +131,32 @@ const logoutUser = async (req, res, next) => {
 //@access Public
 //edit user details
 const editUser = async (req, res, next) => {
-    res.status(200).send("Edit user stub")
+    const { emailAddress } = req.body;
+    try {
+        const user = await users.findOne({ emailAddress: emailAddress });
+        if (!user) {
+            return res.status(400).json({
+                message: 'User does not exist'
+            });
+        }
+        const { firstName, lastName, userName, password, isMember, isBeneficiary } = req.body;
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.userName = userName;
+        user.password = password;
+        user.isMember = isMember;
+        user.isBeneficiary = isBeneficiary;
+        await user.save();
+        res.status(200).json({
+            success: true,
+            data: user,
+            message: 'User updated successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
 
 //@desc   delete user
@@ -104,7 +164,26 @@ const editUser = async (req, res, next) => {
 //@access Public
 //delete user
 const deleteUser = async (req, res, next) => {
-    res.status(200).send("Delete user stub")
+    const { emailAddress } = req.body;
+    try {
+        const user = await users.findOne({ emailAddress: emailAddress });
+        if (!user) {
+            return res.status(400).json({
+                message: 'User does not exist'
+            });
+        }
+        await user.remove();
+        res.status(200).json({
+            success: true,
+            data: user,
+            message: 'User deleted successfully'
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
 
 /* -------------------------- ANCHOR module section ------------------------- */

@@ -1,0 +1,67 @@
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: 1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#signup-title {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 1.8rem;
+}
+
+#floatingPassword:focus{
+  border-color: #f7d564;
+}
+
+#floatingPassword-signup:focus{
+  border-color: #f7d564;
+}
+
+#floatingPassword-signup{
+  margin-bottom: 1.5rem;
+}
+
+#floatingInput:focus{
+  border-color: #f7d564;
+}
+
+#submit-button-signup {
+  background-color: #f7d564;
+  border-color: #f7d564;
+  color:black;
+  margin-bottom: 0.5rem;
+}
+
+#submit-button-signup:hover {
+  background-color: #e9ca62;
+  border-color: #e9ca62;
+}
+
+.signup-link{
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #787878;
+}
+
+.signup-link:hover{
+  color: #787878;
+}

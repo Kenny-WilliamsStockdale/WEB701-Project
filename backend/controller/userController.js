@@ -2,14 +2,29 @@
 /*                                Imports here                                */
 /* -------------------------------------------------------------------------- */
 //TODO: Test all routes STATUS: Working
+const users = require('../model/users');
 
 
-//@desc   create new user
+//@desc   create new user and encrypt the password
 //@route  POST /user/register/
 //@access Public
 // Register new user
 const registerUser = async (req, res, next) => {
-    res.status(200).send("Create user stub")
+    const { firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary } = req.body;
+    users.create({
+        firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary
+    })
+        // .then(() => {
+        //     // redirect to user profile.
+        //     res.redirect("/Product");
+        // })
+        .catch((err) => {
+            if (err) {
+                if (err.name === 'ValidationError') {
+                    console.error(Object.values(err.errors).map(val => val.message))
+                }
+            }
+        })
 }
 
 //@desc   view account

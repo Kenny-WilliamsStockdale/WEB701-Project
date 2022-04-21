@@ -4,6 +4,12 @@ const app = express();
 const connectDB = require('./db')
 require("dotenv").config({ path: "./.env" });
 
+// creates express application
+app.use(express.json());
+
+// database connect
+connectDB();
+
 /* ------------------------------ get routes ----------------------------- */
 const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes')
@@ -22,13 +28,6 @@ app.use("/cart", cartRoutes)
 app.use("/order", orderRoutes);
 //List of category
 app.use("/category", categoryRoutes);
-
-
-// creates express application
-app.use(express.json());
-
-// database connect
-connectDB();
 
 // request and send to check the backend is running
 app.get('/', (req, res) => {

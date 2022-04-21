@@ -11,21 +11,37 @@ const users = require('../model/users');
 // Register new user
 const registerUser = async (req, res, next) => {
     const { firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary } = req.body;
-    users.create({
-        firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary
-    })
-        // .then(() => {
-        //     // redirect to user profile.
-        //     res.redirect("/Product");
-        // })
-        .catch((err) => {
-            if (err) {
-                if (err.name === 'ValidationError') {
-                    console.error(Object.values(err.errors).map(val => val.message))
-                }
-            }
-        })
+    try {
+        const userExists = await users.findOne({ emailAddress: emailAddress });
+        if (userExists) {
+            return res.status(400).json({
+                message: 'User already exists'
+            });
+        }
+        const user = await users.create({
+            firstName,
+            lastName,
+            userName,
+            emailAddress,
+            password,
+            isMember,
+            isBeneficiary
+        });
+        res.status(201).json({
+            success: true,
+            data: user,
+            message: 'User created successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
+// .then(() => {
+//     // redirect to user profile.
+//     res.redirect("/Product");
+// })
 
 //@desc   view account
 //@route  GET /user/account/:userEmail
@@ -40,7 +56,31 @@ const showAccount = async (req, res, next) => {
 //@access Public
 //login user
 const loginUser = async (req, res, next) => {
-    res.status(200).send("Login user stub")
+    const { emailAddress, password } = req.body;
+    try {
+        const user = await users.findOne({ emailAddress: emailAddress });
+        if (!user) {
+            return res.status(400).json({
+                message: 'User does not exist'
+            });
+        }
+        const isMatch = await user.matchPassword(password);
+        if (isMatch) {
+            return res.status(200).json({
+                success: true,
+                data: user,
+                message: 'User logged in successfully'
+            });
+        }
+        return res.status(400).json({
+            message: 'Invalid username or password'
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
 
 //@desc   logout user

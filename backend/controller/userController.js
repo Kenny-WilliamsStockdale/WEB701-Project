@@ -12,36 +12,79 @@ const users = require('../model/users');
 const registerUser = async (req, res, next) => {
     const { firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary } = req.body;
     try {
-        const userExists = await users.findOne({ emailAddress: emailAddress });
-        if (userExists) {
+        //Validating user data
+        if (!firstName || !lastName || !userName || !emailAddress || !password) {
             return res.status(400).json({
-                message: 'User already exists'
+                message: 'Please fill in all fields'
             });
         }
-        const user = await users.create({
-            firstName,
-            lastName,
-            userName,
-            emailAddress,
-            password,
-            isMember,
-            isBeneficiary
-        });
-        res.status(201).json({
-            success: true,
-            data: user,
-            message: 'User created successfully'
-        });
+        if (password.length < 8) {
+            return res.status(400).json({
+                message: 'Password must be at least 8 characters long'
+            });
+        }
+        if (!isMember && !isBeneficiary) {
+            return res.status(400).json({
+                message: 'Please select either member or beneficiary'
+            });
+        }
+        if (isMember && isBeneficiary) {
+            return res.status(400).json({
+                message: 'Please select either member or beneficiary'
+            });
+        }
+        if (isMember) {
+            const user = await users.findOne({ emailAddress: emailAddress });
+            if (user) {
+                return res.status(400).json({
+                    message: 'User already exists'
+                });
+            }
+            const newUser = new users({
+                firstName: firstName,
+                lastName: lastName,
+                userName: userName,
+                emailAddress: emailAddress,
+                password: password,
+                isMember: isMember,
+                isBeneficiary: isBeneficiary
+            });
+            await newUser.save();
+            res.status(200).json({
+                success: true,
+                data: newUser,
+                message: 'User created successfully'
+            });
+        }
+        if (isBeneficiary) {
+            const user = await users.findOne({ emailAddress: emailAddress });
+            if (user) {
+                return res.status(400).json({
+                    message: 'User already exists'
+                });
+            }
+            const newUser = new users({
+                firstName: firstName,
+                lastName: lastName,
+                userName: userName,
+                emailAddress: emailAddress,
+                password: password,
+                isMember: isMember,
+                isBeneficiary: isBeneficiary
+            });
+            await newUser.save();
+            res.status(200).json({
+                success: true,
+                data: newUser,
+                message: 'User created successfully'
+            });
+        }
     } catch (error) {
         res.status(500).json({
             message: 'Invalid user data'
         });
     }
 }
-// .then(() => {
-//     // redirect to user profile.
-//     res.redirect("/Product");
-// })
 
 //@desc   view account
 //@route  GET /user/account/:userEmail
@@ -75,30 +118,28 @@ const showAccount = async (req, res, next) => {
 //login user
 const loginUser = async (req, res, next) => {
     const { emailAddress, password } = req.body;
-    try {
-        const user = await users.findOne({ emailAddress: emailAddress });
-        if (!user) {
+    users.findOne({ emailAddress: emailAddress }, (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Invalid user data'
+            });
+        }
+        if (user) {
+            return res.status(404).json({
+                message: 'User not found'
+            });
+        }
+        if (user.password !== password) {
             return res.status(400).json({
-                message: 'User does not exist'
+                message: 'Invalid password'
             });
         }
-        const isMatch = await user.matchPassword(password);
-        if (isMatch) {
-            return res.status(200).json({
-                success: true,
-                data: user,
-                message: 'User logged in successfully'
-            });
-        }
-        return res.status(400).json({
-            message: 'Invalid username or password'
+        res.status(200).json({
+            success: true,
+            data: user,
+            message: 'User logged in successfully'
         });
-    }
-    catch (error) {
-        res.status(500).json({
-            message: 'Invalid user data'
-        });
-    }
+    });
 }
 
 //@desc   logout user

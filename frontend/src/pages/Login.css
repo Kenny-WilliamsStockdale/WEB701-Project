@@ -31,7 +31,11 @@
   font-size: 1.8rem;
 }
 
-#floatingPassword:focus{
+#floatingPassword-login{
+  margin-bottom: 1.5rem;
+}
+
+#floatingPassword-login:focus{
   border-color: #f7d564;
 }
 
@@ -39,14 +43,14 @@
   border-color: #f7d564;
 }
 
-#submit-button {
+#submit-button-login {
   background-color: #f7d564;
   border-color: #f7d564;
   color:black;
   margin-bottom: 0.5rem;
 }
 
-#submit-button:hover {
+#submit-button-login:hover {
   background-color: #e9ca62;
   border-color: #e9ca62;
 }

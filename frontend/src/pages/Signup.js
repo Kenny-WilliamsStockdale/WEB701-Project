@@ -23,7 +23,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  //TODO fix the error handling on selection of both checkbox
+  //TODO fix the error handling on selection of both checkbox: Status: Fixed
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);

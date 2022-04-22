@@ -3,6 +3,7 @@
 /* -------------------------------------------------------------------------- */
 //TODO: Test all routes STATUS: Working
 const users = require('../model/users');
+const bcrypt = require('bcrypt');
 
 
 //@desc   create new user and encrypt the password
@@ -124,14 +125,14 @@ const loginUser = async (req, res, next) => {
                 message: 'Invalid user data'
             });
         }
-        if (user) {
-            return res.status(404).json({
-                message: 'User not found'
+        if (!user) {
+            return res.status(400).json({
+                message: 'User does not exist'
             });
         }
-        if (user.password !== password) {
+        if (!bcrypt.compareSync(password, user.password)) {
             return res.status(400).json({
-                message: 'Invalid password'
+                message: 'Incorrect password'
             });
         }
         res.status(200).json({

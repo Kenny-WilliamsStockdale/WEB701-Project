@@ -23,19 +23,24 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     axios
-      .get('/user/login/', { emailAddress, password })
+      .get('/user/login/', {
+        params: {
+          emailAddress: emailAddress,
+          password: password,
+        },
+      })
       .then((res) => {
         setLoading(false);
         setMessage(res.data.message);
         setTimeout(() => {
-          navigate('/Product')
+          navigate('/product')
         }, 2000)
       })
       .catch((err) => {
         setLoading(false);
         setError(err.response.data.message);
       });
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit} className="form-signin">

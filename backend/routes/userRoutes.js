@@ -33,7 +33,7 @@ router.post('/login/', loginUser)
 //@route  GET /user/logout/:userEmail
 //@access Public
 //logout user
-router.get('/logout/', logoutUser)
+router.post('/logout/', logoutUser)
 
 
 //@desc   edit user details

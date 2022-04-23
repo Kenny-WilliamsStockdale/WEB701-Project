@@ -27,7 +27,6 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         setMessage(res.data.message);
-        console.log(res.data.message);
         localStorage.setItem('userInfo', JSON.stringify(res.data))
         setTimeout(() => {
           navigate('/Product')

@@ -154,8 +154,8 @@ const logoutUser = async (req, res, next) => {
     try {
         const user = await users.findOne({ emailAddress: emailAddress });
         if (!user) {
-            return res.status(400).json({
-                message: 'User does not exist'
+            return res.status(404).json({
+                message: 'User not found'
             });
         }
         res.status(200).json({
@@ -163,7 +163,8 @@ const logoutUser = async (req, res, next) => {
             data: user,
             message: 'User logged out successfully'
         });
-    } catch (error) {
+    }
+    catch (error) {
         res.status(500).json({
             message: 'Invalid user data'
         });

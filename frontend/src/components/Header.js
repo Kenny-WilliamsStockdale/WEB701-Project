@@ -14,15 +14,8 @@ const Header = () => {
   const navigate = useNavigate()
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const handleLogout = () => {
-    axios
-      .post('/user/logout')
-      .then((res) => {
-        localStorage.removeItem('userInfo');
-        navigate('/login')
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    localStorage.removeItem('userInfo');
+    navigate('/')
   }
   return (
     <Navbar bg="primary-main" expand="lg" variant="dark">
@@ -53,18 +46,10 @@ const Header = () => {
                 >
                   <Nav.Link id='nav-dropdown-item' >Profile</Nav.Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  id='dropdown-item'
-                  onClick={() => {
-                    navigate("/cart");
-                  }}
-                >
-                  <Nav.Link id='nav-dropdown-item' >Cart</Nav.Link>
-                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item
                   id='dropdown-item'
-                  onClick={ handleLogout}
+                  onClick={handleLogout}
                 >
                   <Nav.Link id='nav-dropdown-item' >Logout</Nav.Link>
                 </NavDropdown.Item>

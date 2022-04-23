@@ -23,17 +23,14 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     axios
-      .get('/user/login/', {
-        params: {
-          emailAddress: emailAddress,
-          password: password,
-        },
-      })
+      .post('/user/login/', { emailAddress, password })
       .then((res) => {
         setLoading(false);
         setMessage(res.data.message);
+        console.log(res.data.message);
+        localStorage.setItem('userInfo', JSON.stringify(res.data))
         setTimeout(() => {
-          navigate('/product')
+          navigate('/Product')
         }, 2000)
       })
       .catch((err) => {

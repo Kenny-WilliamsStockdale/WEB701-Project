@@ -2,18 +2,28 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React from 'react'
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container} from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { Navbar, Nav, NavDropdown, Container} from 'react-bootstrap';
+import axios from 'axios';
 import './Header.css'
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
 
 const Header = () => {
-  // const navigate = useNavigate()
-  // const userInfo = localStorage.userInfo  // checks if userInfo exists in localStorage. If exists return the user data. If not return null
-    // ? JSON.parse(localStorage.userInfo).user
-  //   : null;
+  const navigate = useNavigate()
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const handleLogout = () => {
+    axios
+      .post('/user/logout')
+      .then((res) => {
+        localStorage.removeItem('userInfo');
+        navigate('/login')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <Navbar bg="primary-main" expand="lg" variant="dark">
       <Container>
@@ -29,41 +39,42 @@ const Header = () => {
             <Nav.Link>
             <Link to="/Cart" id="nav-cart">Cart</Link>
             </Nav.Link>
-            {/* {userInfo ? (
+            {userInfo ? (
               <NavDropdown
-                title={userInfo.firstName}
+                title={userInfo.data.firstName}
                 id="basic-nav-dropdown"
                 // className="bg-primary"
               >
                 <NavDropdown.Item
+                  id='dropdown-item'
                   onClick={() => {
                     navigate("/profile");
                   }}
                 >
-                  <Nav.Link>Profile</Nav.Link>
+                  <Nav.Link id='nav-dropdown-item' >Profile</Nav.Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item
+                  id='dropdown-item'
                   onClick={() => {
                     navigate("/cart");
                   }}
                 >
-                  <Nav.Link>Cart</Nav.Link>
+                  <Nav.Link id='nav-dropdown-item' >Cart</Nav.Link>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item
-                  onClick={() => {
-                    localStorage.removeItem("userInfo");
-                    navigate("/");
-                  }}
+                  id='dropdown-item'
+                  onClick={ handleLogout}
                 >
-                  <Nav.Link>Logout</Nav.Link>
+                  <Nav.Link id='nav-dropdown-item' >Logout</Nav.Link>
                 </NavDropdown.Item>
               </NavDropdown>
-            ) : ( */}
+            ) : (
             <Nav.Link>
             <Link to="/Login" id="nav-login">Login</Link>
             </Nav.Link>
-            {/* ) */}
+            )
+            }
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -24,10 +24,10 @@ router.get('/account/', showAccount)
 
 
 //@desc   login user
-//@route  GET /user/login/:userEmail
+//@route  POST /user/login/:userEmail
 //@access Public
 //login user
-router.get('/login/', loginUser)
+router.post('/login/', loginUser)
 
 //@desc   logout user
 //@route  GET /user/logout/:userEmail

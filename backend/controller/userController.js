@@ -114,25 +114,22 @@ const showAccount = async (req, res, next) => {
 }
 
 //@desc   login user
-//@route  GET /user/login/:userEmail
+//@route  POST /user/login/:userEmail
 //@access Public
 //login user
 const loginUser = async (req, res, next) => {
     const { emailAddress, password } = req.body;
-    users.findOne({ emailAddress: emailAddress }, (err, user) => {
-        if (err) {
-            return res.status(500).json({
-                message: 'Invalid user data'
-            });
-        }
+    try {
+        const user = await users.findOne({ emailAddress: emailAddress });
         if (!user) {
-            return res.status(400).json({
-                message: 'User does not exist'
+            return res.status(404).json({
+                message: 'User not found'
             });
         }
-        if (!bcrypt.compareSync(password, user.password)) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
             return res.status(400).json({
-                message: 'Incorrect password'
+                message: 'Invalid credentials'
             });
         }
         res.status(200).json({
@@ -140,7 +137,12 @@ const loginUser = async (req, res, next) => {
             data: user,
             message: 'User logged in successfully'
         });
-    });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
 }
 
 //@desc   logout user

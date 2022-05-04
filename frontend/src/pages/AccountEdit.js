@@ -18,8 +18,6 @@ const AccountEdit = () => {
   const [userName, setUserName] = useState('')
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
-  const [isMember, setIsMember] = useState(false);
-  const [isBeneficiary, setIsBeneficiary] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -32,8 +30,6 @@ const AccountEdit = () => {
       userName: userName,
       emailAddress: emailAddress,
       password: password,
-      isMember: isMember,
-      isBeneficiary: isBeneficiary,
     }
     console.log(data);
     axios
@@ -57,8 +53,6 @@ const AccountEdit = () => {
     setUserName(userInfo.data.userName);
     setEmailAddress(userInfo.data.emailAddress);
     setPassword(userInfo.data.password);
-    setIsMember(userInfo.data.isMember);
-    setIsBeneficiary(userInfo.data.isBeneficiary);
   }, [])
 
   return (
@@ -93,14 +87,6 @@ const AccountEdit = () => {
                 <div className="form-group">
                   <label htmlFor="emailAddress">Password</label>
                   <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="isMember">Member Account</label>
-                  <input type="text" className="form-control" id="isMember" placeholder="Enter Member Account" value={isMember} onChange={(e) => setIsMember(e.target.value)} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="isBeneficiary">Beneficiary Account</label>
-                  <input type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={isBeneficiary} onChange={(e) => setIsBeneficiary(e.target.value)} />
                 </div>
               </form>
               <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Submit</button>

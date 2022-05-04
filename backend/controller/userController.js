@@ -48,7 +48,7 @@ const registerUser = async (req, res, next) => {
                 emailAddress: emailAddress,
                 password: password,
                 isMember: isMember,
-                isBeneficiary: isBeneficiary
+                isBeneficiary: isBeneficiary,
             });
             await newUser.save();
             res.status(200).json({
@@ -71,7 +71,8 @@ const registerUser = async (req, res, next) => {
                 emailAddress: emailAddress,
                 password: password,
                 isMember: isMember,
-                isBeneficiary: isBeneficiary
+                isBeneficiary: isBeneficiary,
+                vouchers: 10,
             });
             await newUser.save();
             res.status(200).json({

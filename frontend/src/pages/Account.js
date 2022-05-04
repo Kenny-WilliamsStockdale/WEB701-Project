@@ -19,6 +19,7 @@ const Account = () => {
   const [emailAddress, setEmailAddress] = useState('');
   const [isMember, setIsMember] = useState(false);
   const [isBeneficiary, setIsBeneficiary] = useState(false);
+  const [vouchers, setVouchers] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [Loading, setLoading] = useState(false);
@@ -51,6 +52,7 @@ const Account = () => {
     setLastName(userInfo.data.lastName);
     setUserName(userInfo.data.userName);
     setEmailAddress(userInfo.data.emailAddress);
+    setVouchers(userInfo.data.vouchers);
   }, [])
 
   return (
@@ -81,14 +83,20 @@ const Account = () => {
                   <label htmlFor="emailAddress">Email Address</label>
                   <input readOnly type="email" className="form-control" id="emailAddress" placeholder="Enter Email Address" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
                 </div>
+                {userInfo.data.isMember ? (
                 <div className="form-group">
                   <label htmlFor="isMember">Member Account</label>
-                  <input readOnly type="text" className="form-control" id="isMember" placeholder="Enter Member Account" value={userInfo.data.isMember}  onChange={(e) => setIsMember(e.target.value)} />
+                  <input readOnly type="text" className="form-control" id="isMember" placeholder="Enter Member Account" value={userInfo.data.isMember = "Yes"}  onChange={(e) => setIsMember(e.target.value)} />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="isBeneficiary">Beneficiary Account</label>
-                  <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.isBeneficiary}  onChange={(e) => setIsBeneficiary(e.target.value)} />
-                </div>
+                ) : (
+                  <><div className="form-group">
+                      <label htmlFor="isBeneficiary">Beneficiary Account</label>
+                      <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.isBeneficiary = "Yes"} onChange={(e) => setIsBeneficiary(e.target.value)} />
+                    </div><div className="form-group">
+                        <label htmlFor="isBeneficiary">Number of Vouchers</label>
+                        <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.vouchers} onChange={(e) => setVouchers(e.target.value)} />
+                      </div></>
+                )}
               </form>
               <button type="button" className="btn btn-primary" onClick={() => { navigate("/accountEdit") }}>Edit</button>
               <button type="button" className="btn btn-primary" onClick={() => { deleteUser() }}>Delete</button>

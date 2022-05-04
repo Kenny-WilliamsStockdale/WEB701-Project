@@ -1,7 +1,11 @@
 /* -------------------------------------------------------------------------- */
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+// import Product from "../components/Product";
+import { Card } from "react-bootstrap"
+import "./Product.css";
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */

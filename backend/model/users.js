@@ -30,10 +30,14 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     isBeneficiary: {
-      type: Boolean,
-      required: [true, "Is this user a beneficiary?"],
-      default: false
-  },
+        type: Boolean,
+        required: [true, "Is this user a beneficiary?"],
+        default: false
+    },
+    vouchers: {
+        type: Number,
+        required: [false, "Vouchers"]
+    },
 },{
     timestamp:true,//this will check when the user is created and updated
 });

@@ -41,7 +41,7 @@ const Header = () => {
                 <NavDropdown.Item
                   id='dropdown-item'
                   onClick={() => {
-                    navigate("/profile");
+                    navigate("/account");
                   }}
                 >
                   <Nav.Link id='nav-dropdown-item' >Profile</Nav.Link>

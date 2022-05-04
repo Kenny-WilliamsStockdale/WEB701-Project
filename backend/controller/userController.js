@@ -185,17 +185,29 @@ const editUser = async (req, res, next) => {
             });
         }
         const { firstName, lastName, userName, password, isMember, isBeneficiary } = req.body;
-        user.firstName = firstName;
-        user.lastName = lastName;
-        user.userName = userName;
-        user.password = password;
-        user.isMember = isMember;
-        user.isBeneficiary = isBeneficiary;
+        if (firstName) {
+            user.firstName = firstName;
+        }
+        if (lastName) {
+            user.lastName = lastName;
+        }
+        if (userName) {
+            user.userName = userName;
+        }
+        if (password) {
+            user.password = password;
+        }
+        if (isMember) {
+            user.isMember = isMember;
+        }
+        if (isBeneficiary) {
+            user.isBeneficiary = isBeneficiary;
+        }
         await user.save();
         res.status(200).json({
             success: true,
             data: user,
-            message: 'User updated successfully'
+            message: 'User details updated successfully'
         });
     } catch (error) {
         res.status(500).json({
@@ -223,8 +235,7 @@ const deleteUser = async (req, res, next) => {
             data: user,
             message: 'User deleted successfully'
         });
-    }
-    catch (error) {
+    } catch (error) {
         res.status(500).json({
             message: 'Invalid user data'
         });

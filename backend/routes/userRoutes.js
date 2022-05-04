@@ -37,7 +37,7 @@ router.post('/logout/', logoutUser)
 
 
 //@desc   edit user details
-//@route  GET /user/editUser/:userEmail
+//@route  PUT /user/editUser/:userEmail
 //@access Public
 //edit user details
 router.put('/editUser/', editUser)

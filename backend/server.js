@@ -1,8 +1,8 @@
+require("dotenv").config({path: './../.env'});
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const connectDB = require('./db')
-require("dotenv").config({ path: "./.env" });
 
 // creates express application
 app.use(express.json());

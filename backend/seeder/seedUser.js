@@ -1,7 +1,5 @@
-require('dotenv').config()
-
+require('dotenv').config({path: './../.env'});
 const connectDB = require('../db')
-
 const userData = require('../data/userData')
 const users = require('../model/users')
 

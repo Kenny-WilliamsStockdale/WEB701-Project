@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductComponent from "../components/ProductComponent";
+import Loading from "../components/Loader";
 import { Card, Button } from "react-bootstrap"
 import "./Product.css";
 /* -------------------------------------------------------------------------- */
@@ -14,6 +15,7 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +34,7 @@ const Product = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (error) {
     return <div>Error: {error.message}</div>;

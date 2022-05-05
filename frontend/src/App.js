@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AccountEdit from './pages/AccountEdit';
 import Account from './pages/Account';
+import ProductDetail from './pages/ProductDetail';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -26,6 +27,7 @@ const App = () => (
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Account" element={<Account />} />
         <Route path="/AccountEdit" element={<AccountEdit />} />
+        <Route path="/ProductDetail/:id" element={<ProductDetail />} />
       </Routes>
     </main>
     <Footer />

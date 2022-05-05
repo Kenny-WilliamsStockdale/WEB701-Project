@@ -49,20 +49,32 @@ const deleteProduct = async (req, res, next) => {
     res.status(200).send("Delete product stub")
 }
 
-//@desc   view product
+//@desc   view product by id
 //@route  GET /product/viewProduct/:id
 //@access Public
-//view product
+//view product by id
 const viewProduct = async (req, res, next) => {
-    res.status(200).send("View product stub")
+    try {
+        const product = await products.findById(req.params.id);
+        res.status(200).json({
+            success: true,
+            data: product,
+            message: 'Product found'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid product data'
+        });
+    }
+
 }
 
-/* -------------------------- ANCHOR module section ------------------------- */
+    /* -------------------------- ANCHOR module section ------------------------- */
 
-module.exports = {
-    getProduct,
-    addProduct,
-    editProduct,
-    deleteProduct,
-    viewProduct
-};
+    module.exports = {
+        getProduct,
+        addProduct,
+        editProduct,
+        deleteProduct,
+        viewProduct
+    };

@@ -1,8 +1,29 @@
 /* -------------------------------------------------------------------------- */
 /*                                Imports here                                */
 /* -------------------------------------------------------------------------- */
+const products = require('../model/product');
 //TODO: Test all routes STATUS:WORKING
 
+
+//@desc   get product
+//@route  GET /product/products
+//@access Public
+// add product
+const getProduct = async (req, res, next) => {
+    try {
+        const product = await products.find({});
+        res.status(200).json({
+            success: true,
+            data: product,
+            message: 'Product found'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid product data'
+        });
+
+    }
+}
 
 //@desc   add product
 //@route  POST /product/addProduct
@@ -39,6 +60,7 @@ const viewProduct = async (req, res, next) => {
 /* -------------------------- ANCHOR module section ------------------------- */
 
 module.exports = {
+    getProduct,
     addProduct,
     editProduct,
     deleteProduct,

@@ -2,11 +2,19 @@ const express = require('express');
 router = express.Router();
 
 const {
+    getProduct,
     addProduct,
     editProduct,
     deleteProduct,
     viewProduct
 } = require('../controller/productController')
+
+
+//@desc   get all product
+//@route  GET /product/
+//@access Public
+// add product
+router.get('/products', getProduct);
 
 //@desc   add product
 //@route  POST /product/addProduct

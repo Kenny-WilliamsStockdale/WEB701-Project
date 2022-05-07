@@ -26,9 +26,6 @@ const Product = ({product}) => {
         <Card.Text>
           <strong>Price:</strong> {product.voucherPrice}
         </Card.Text>
-        <Card.Text>
-          <strong>Quantity:</strong> {product.countInStock}
-        </Card.Text>
       </Card.Body>
     </Card>
   );

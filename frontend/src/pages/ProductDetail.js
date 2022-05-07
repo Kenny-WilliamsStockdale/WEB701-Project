@@ -18,6 +18,21 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  //add product to cart
+  const handleClaim = () => {
+    const product = products;
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart) {
+      if (cart.find(item => item.data._id === product.data._id)) {alert("Already in cart"); return;}
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([product]));
+    }
+    alert('Product added to cart');
+  }
+  //get product by id
+
   const { id } = useParams();
 
 
@@ -55,11 +70,11 @@ const ProductDetails = () => {
           <p>
             <strong>Price:</strong> {products.data.voucherPrice}
           </p>
-          <p>
-            <strong>Quantity:</strong> {products.data.countInStock}
-          </p>
           <Link to="/Product">
             <Button variant="primary">Back</Button>
+          </Link>
+          <Link to="/Product">
+            <Button variant="primary" onClick={handleClaim}>Claim</Button>
           </Link>
         </div>
       </div>

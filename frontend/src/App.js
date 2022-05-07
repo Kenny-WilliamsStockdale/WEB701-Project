@@ -12,6 +12,7 @@ import Signup from './pages/Signup';
 import AccountEdit from './pages/AccountEdit';
 import Account from './pages/Account';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './components/CartComponent';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -28,6 +29,7 @@ const App = () => (
         <Route path="/Account" element={<Account />} />
         <Route path="/AccountEdit" element={<AccountEdit />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
+        <Route path="/Cart" element={<Cart />} />
       </Routes>
     </main>
     <Footer />

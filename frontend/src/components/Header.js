@@ -5,6 +5,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import axios from 'axios';
+import CartModal from './CartComponent';
 import './Header.css'
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -29,9 +30,7 @@ const Header = () => {
             <Nav.Link>
               <Link to="/Product" id="nav-product">Product</Link>
             </Nav.Link>
-            <Nav.Link>
-              <Link to="/Cart" id="nav-cart">Cart</Link>
-            </Nav.Link>
+              <CartModal/>
             {userInfo ? (
               <NavDropdown
                 title={userInfo.data.firstName}

@@ -89,13 +89,26 @@ const Account = () => {
                   <input readOnly type="text" className="form-control" id="isMember" placeholder="Enter Member Account" value={userInfo.data.isMember = "Yes"}  onChange={(e) => setIsMember(e.target.value)} />
                 </div>
                 ) : (
-                  <><div className="form-group">
+                  <><><div className="form-group">
                       <label htmlFor="isBeneficiary">Beneficiary Account</label>
                       <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.isBeneficiary = "Yes"} onChange={(e) => setIsBeneficiary(e.target.value)} />
-                    </div><div className="form-group">
+                    </div>
+                      <div className="form-group">
                         <label htmlFor="isBeneficiary">Number of Vouchers</label>
                         <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.vouchers} onChange={(e) => setVouchers(e.target.value)} />
                       </div></>
+                      {/* list of orders */}
+                      {/* <div className="form-group">
+                        <label htmlFor="isBeneficiary">Vouchers</label>
+                        <ul className="list-group">
+                          {userInfo.data.vouchers.map(voucher => (
+                            <li className="list-group-item" key={voucher._id}>
+                              {voucher.voucherCode}
+                            </li>
+                          ))}
+                        </ul>
+                      </div> */}
+                      </>
                 )}
               </form>
               <button type="button" className="btn btn-primary" onClick={() => { navigate("/accountEdit") }}>Edit</button>

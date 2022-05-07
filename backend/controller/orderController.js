@@ -1,15 +1,48 @@
 /* -------------------------------------------------------------------------- */
 /*                                Imports here                                */
 /* -------------------------------------------------------------------------- */
+const voucher_codes = require('voucher-code-generator');
 //TODO: Test all routes STATUS:WORKING
 
+const Orders = require("../model/orders");
+const users = require("../model/users");
+
+const createToken = () => {
+    const token = voucher_codes.generate({
+        length: 12,
+        count: 1,
+        pattern: '####-####-####-####',
+    })[0];
+
+    return token;
+}
 
 //@desc   create order
 //@route  POST /order/newOrder
 //@access Public
 // create order
+
+// create order, find user and create order. Attach token to order
 const createOrder = async (req, res, next) => {
-    res.status(200).send("Create new order stub")
+    const { emailAddress, product, subtotal } = req.body;
+    const token = createToken();
+    const user = await users.findOneAndUpdate({ emailAddress: emailAddress }, {$push: { tokenId: token}});
+    if (!user) {
+        return res.status(404).json({
+            message: 'User does not exist'
+        });
+    }
+    const newOrder = new Orders({
+        tokenId: token,
+        products: product,
+        subtotal: subtotal
+    });
+    await newOrder.save();
+    res.status(200).json({
+        success: true,
+        data: newOrder,
+        message: 'Order created successfully'
+    })
 }
 
 //@desc   edit order

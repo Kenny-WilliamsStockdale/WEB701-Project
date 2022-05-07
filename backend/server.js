@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const connectDB = require('./db')
+const { notFound, errorHandler } = require('./middlewares/error.middleware')
 
 // creates express application
 app.use(express.json());
@@ -28,6 +29,10 @@ app.use("/cart", cartRoutes)
 app.use("/order", orderRoutes);
 //List of category
 app.use("/category", categoryRoutes);
+
+//middleware
+app.use(notFound);
+app.use(errorHandler);
 
 // request and send to check the backend is running
 app.get('/', (req, res) => {

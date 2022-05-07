@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from './Loader';
+import Message from './Message';
 import { Button, Modal, Nav } from 'react-bootstrap';
 
 import axios from 'axios';
@@ -13,10 +14,59 @@ import axios from 'axios';
 function CartModal() {
   const [show, setShow] = useState(false);
   const [cart, setCart] = useState([]);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const ProductInfo = JSON.parse(localStorage.getItem('cart'));
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+  const createOrder = () => {
+    if (ProductInfo === null || ProductInfo === undefined) {
+      setError('Please add products to cart');
+      setTimeout(() => {
+      window.location.reload();
+      }, 2000);
+    } else {
+
+      //get voucherPrice and reduce array into one number for subtotal
+      const findVoucherPrice = ProductInfo.map(item => {
+        return item.data.voucherPrice;
+      })
+      const findTotalPrice = findVoucherPrice.reduce((a, b) => a + b, 0);
+
+      //get product
+      const findProduct = ProductInfo.map(item => {
+        return item.data;
+      })
+
+      console.log(userInfo.data.emailAddress);
+      console.log(findProduct);
+      console.log(findTotalPrice);
+
+      axios
+        .post( '/order/newOrder', {
+          emailAddress: userInfo.data.emailAddress,
+          product: findProduct,
+          subtotal: findVoucherPrice,
+        })
+        .then(res => {
+          setMessage(res.data.message);
+          setTimeout(() => {
+            setShow(false);
+            setMessage('');
+            setCart([]);
+          }, 2000);
+        })
+        .catch(err => {
+          setError(err.response.data.message);
+          setTimeout(() => {
+            setError('');
+          }
+          , 2000);
+        });
+    }
+  }
 
   return (
     <>
@@ -25,6 +75,8 @@ function CartModal() {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Cart</Modal.Title>
+          {message && <Message variant='success'>{message}</Message>}
+          {error && <Message variant='danger'>{error}</Message>}
         </Modal.Header>
         <Modal.Body>
           {ProductInfo ? (
@@ -72,7 +124,6 @@ function CartModal() {
                   }, 0)}
                 </div>
               </div>
-              {/* delete single tem from the cart*/}
               </>
           ) : (
             <div>
@@ -91,7 +142,7 @@ function CartModal() {
           }>
             Clear Cart
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={createOrder}>
             Checkout
           </Button>
         </Modal.Footer>

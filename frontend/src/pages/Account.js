@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loading from '../components/Loader'
 import Message from '../components/Message'
+import TokenList from '../components/TokenList'
 import './Account.css'
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -22,7 +23,6 @@ const Account = () => {
   const [vouchers, setVouchers] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [Loading, setLoading] = useState(false);
 
   const deleteUser = () => {
     axios
@@ -56,7 +56,7 @@ const Account = () => {
   }, [])
 
   return (
-    <div className="container">
+    <><div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="card">
@@ -84,40 +84,32 @@ const Account = () => {
                   <input readOnly type="email" className="form-control" id="emailAddress" placeholder="Enter Email Address" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
                 </div>
                 {userInfo.data.isMember ? (
-                <div className="form-group">
-                  <label htmlFor="isMember">Member Account</label>
-                  <input readOnly type="text" className="form-control" id="isMember" placeholder="Enter Member Account" value={userInfo.data.isMember = "Yes"}  onChange={(e) => setIsMember(e.target.value)} />
-                </div>
+                  <div className="form-group">
+                    <label htmlFor="isMember">Member Account</label>
+                    <input readOnly type="text" className="form-control" id="isMember" placeholder="Enter Member Account" value={userInfo.data.isMember = "Yes"} onChange={(e) => setIsMember(e.target.value)} />
+                  </div>
                 ) : (
                   <><><div className="form-group">
-                      <label htmlFor="isBeneficiary">Beneficiary Account</label>
-                      <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.isBeneficiary = "Yes"} onChange={(e) => setIsBeneficiary(e.target.value)} />
-                    </div>
-                      <div className="form-group">
-                        <label htmlFor="isBeneficiary">Number of Vouchers</label>
-                        <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.vouchers} onChange={(e) => setVouchers(e.target.value)} />
-                      </div></>
-                      {/* list of orders */}
-                      {/* <div className="form-group">
-                        <label htmlFor="isBeneficiary">Vouchers</label>
-                        <ul className="list-group">
-                          {userInfo.data.vouchers.map(voucher => (
-                            <li className="list-group-item" key={voucher._id}>
-                              {voucher.voucherCode}
-                            </li>
-                          ))}
-                        </ul>
-                      </div> */}
-                      </>
+                    <label htmlFor="isBeneficiary">Beneficiary Account</label>
+                    <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.isBeneficiary = "Yes"} onChange={(e) => setIsBeneficiary(e.target.value)} />
+                  </div>
+                    <div className="form-group">
+                      <label htmlFor="isBeneficiary">Number of Vouchers</label>
+                      <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.vouchers} onChange={(e) => setVouchers(e.target.value)} />
+                    </div></>
+                    {/* list of orders */}
+                  </>
                 )}
               </form>
-              <button type="button" className="btn btn-primary" onClick={() => { navigate("/accountEdit") }}>Edit</button>
-              <button type="button" className="btn btn-primary" onClick={() => { deleteUser() }}>Delete</button>
+              <button type="button" className="btn btn-primary" onClick={() => { navigate("/accountEdit") } }>Edit</button>
+              <button type="button" className="btn btn-primary" onClick={() => { deleteUser() } }>Delete</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <TokenList />
+    </>
   )
 }
 

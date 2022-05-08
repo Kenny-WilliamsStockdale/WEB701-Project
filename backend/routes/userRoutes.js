@@ -4,6 +4,7 @@ router = express.Router();
 const {
     registerUser,
     showAccount,
+    getUser,
     loginUser,
     logoutUser,
     editUser,
@@ -21,6 +22,12 @@ router.post('/register', registerUser)
 //@access Public
 // view account
 router.get('/account/', showAccount)
+
+//@desc   get user by email address
+//@route  GET /user/:userEmail
+//@access Public
+// get user by email address
+router.post('/', getUser)
 
 
 //@desc   login user

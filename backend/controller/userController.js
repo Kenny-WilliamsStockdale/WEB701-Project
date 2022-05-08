@@ -2,7 +2,7 @@
 /*                                Imports here                                */
 /* -------------------------------------------------------------------------- */
 //TODO: Test all routes STATUS: Working
-const users = require('../model/users');
+const Users = require('../model/users');
 const bcrypt = require('bcrypt');
 
 
@@ -35,13 +35,13 @@ const registerUser = async (req, res, next) => {
             });
         }
         if (isMember) {
-            const user = await users.findOne({ emailAddress: emailAddress });
+            const user = await Users.findOne({ emailAddress: emailAddress });
             if (user) {
                 return res.status(400).json({
                     message: 'User already exists'
                 });
             }
-            const newUser = new users({
+            const newUser = new Users({
                 firstName: firstName,
                 lastName: lastName,
                 userName: userName,
@@ -59,13 +59,13 @@ const registerUser = async (req, res, next) => {
             });
         }
         if (isBeneficiary) {
-            const user = await users.findOne({ emailAddress: emailAddress });
+            const user = await Users.findOne({ emailAddress: emailAddress });
             if (user) {
                 return res.status(400).json({
                     message: 'User already exists'
                 });
             }
-            const newUser = new users({
+            const newUser = new Users({
                 firstName: firstName,
                 lastName: lastName,
                 userName: userName,
@@ -90,6 +90,32 @@ const registerUser = async (req, res, next) => {
     }
 }
 
+//@desc   get user by email address
+//@route  GET /user/:userEmail
+//@access Public
+// get user by email address
+const getUser = async (req, res, next) => {
+    const { emailAddress } = req.body;
+    console.log(req.body);
+    Users.findOne({emailAddress})
+        .then((user) => {
+            if (!user) {
+                return res.status(404).json({
+                    message: 'User does not exist',
+                    data: user
+                });
+            }
+            res.status(200).json({
+                success: true,
+                data: user,
+                message: 'User found successfully'
+            }
+            );
+        })
+        .catch((err) => next(err));
+}
+
+
 //@desc   view account
 //@route  GET /user/account/:userEmail
 //@access Public
@@ -97,7 +123,7 @@ const registerUser = async (req, res, next) => {
 const showAccount = async (req, res, next) => {
     const { emailAddress } = req.body;
     try {
-        const user = await users.findOne({ emailAddress: emailAddress });
+        const user = await Users.findOne({ emailAddress: emailAddress });
         if (!user) {
             return res.status(404).json({
                 message: 'User not found'
@@ -123,7 +149,7 @@ const showAccount = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
     const { emailAddress, password } = req.body;
     try {
-        const user = await users.findOne({ emailAddress: emailAddress });
+        const user = await Users.findOne({ emailAddress: emailAddress });
         if (!user) {
             return res.status(404).json({
                 message: 'User not found'
@@ -155,7 +181,7 @@ const loginUser = async (req, res, next) => {
 const logoutUser = async (req, res, next) => {
     const { emailAddress } = req.body;
     try {
-        const user = await users.findOne({ emailAddress: emailAddress });
+        const user = await Users.findOne({ emailAddress: emailAddress });
         if (!user) {
             return res.status(404).json({
                 message: 'User not found'
@@ -181,7 +207,7 @@ const logoutUser = async (req, res, next) => {
 const editUser = async (req, res, next) => {
     const { emailAddress } = req.body;
     try {
-        const user = await users.findOne({ emailAddress: emailAddress });
+        const user = await Users.findOne({ emailAddress: emailAddress });
         if (!user) {
             return res.status(400).json({
                 message: 'User does not exist'
@@ -226,7 +252,7 @@ const editUser = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
     const { emailAddress } = req.body;
     try {
-        const user = await users.findOne({ emailAddress: emailAddress });
+        const user = await Users.findOne({ emailAddress: emailAddress });
         if (!user) {
             return res.status(400).json({
                 message: 'User does not exist'
@@ -250,6 +276,7 @@ const deleteUser = async (req, res, next) => {
 module.exports = {
     registerUser,
     showAccount,
+    getUser,
     loginUser,
     logoutUser,
     editUser,

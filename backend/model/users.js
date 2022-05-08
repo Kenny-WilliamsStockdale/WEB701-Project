@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// defines the users schema
+// defines the Users schema
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -16,8 +16,10 @@ const userSchema = new mongoose.Schema({
         required: [true, "User name is required"],
     },
     emailAddress: {
+        trim: true,
         type: String,
         required: [true, "Email address is required"],
+        unique: true,
     },
     password: {
         type: String,
@@ -27,27 +29,27 @@ const userSchema = new mongoose.Schema({
     isMember: {
         type: Boolean,
         required: [true, "Is this user a member?"],
-        default: false
+        default: false,
     },
     isBeneficiary: {
         type: Boolean,
         required: [true, "Is this user a beneficiary?"],
-        default: false
+        default: false,
     },
     vouchers: {
         type: Number,
-        required: [false, "Vouchers"]
+        required: [false, "Vouchers"],
     },
     tokens: {
-        type: String,
+        type: [String],
         required: [false, "Tokens"],
-        default: [],
+        default: undefined,
     }
 },{
     timestamp:true,//this will check when the user is created and updated
 });
 
-// encrypting password with bcrypt so users password is not visible in db
+// encrypting password with bcrypt so Users password is not visible in db
 userSchema.pre('save', async function(next){
     if(!this.isModified('password')){
         next();
@@ -63,5 +65,5 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 }
 
 
-const users = mongoose.model('users', userSchema);
-module.exports = users
+const Users = mongoose.model('Users', userSchema);
+module.exports = Users

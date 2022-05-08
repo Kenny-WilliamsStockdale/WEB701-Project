@@ -16,6 +16,7 @@ function CartModal() {
   const [cart, setCart] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ProductInfo = JSON.parse(localStorage.getItem('cart'));
@@ -39,11 +40,7 @@ function CartModal() {
       const findProduct = ProductInfo.map(item => {
         return item.data;
       })
-
-      console.log(userInfo.data.emailAddress);
-      console.log(findProduct);
-      console.log(findTotalPrice);
-
+      // post to database
       axios
         .post( '/order/newOrder', {
           emailAddress: userInfo.data.emailAddress,
@@ -65,8 +62,24 @@ function CartModal() {
           }
           , 2000);
         });
+        // get user email address from database
+      axios
+        .post('/user/', { emailAddress: userInfo.data.emailAddress })
+        .then(res => {
+          localStorage.setItem('userInfo', JSON.stringify(res.data));
+          console.log(res.data);
+        }
+        )
+        .catch(err => {
+          console.log(err);
+        }
+          )
     }
   }
+  useEffect(() => {
+  }
+  , [])
+
 
   return (
     <>

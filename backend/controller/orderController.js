@@ -5,7 +5,7 @@ const voucher_codes = require('voucher-code-generator');
 //TODO: Test all routes STATUS:WORKING
 
 const Orders = require("../model/orders");
-const users = require("../model/users");
+const Users = require("../model/users");
 
 const createToken = () => {
     const token = voucher_codes.generate({
@@ -26,7 +26,7 @@ const createToken = () => {
 const createOrder = async (req, res, next) => {
     const { emailAddress, product, subtotal } = req.body;
     const token = createToken();
-    const user = await users.findOneAndUpdate({ emailAddress: emailAddress }, {$push: { tokens: token}});
+    const user = await Users.findOneAndUpdate({ emailAddress: emailAddress }, {$push: { tokens: token} });
     if (!user) {
         return res.status(404).json({
             message: 'User does not exist'

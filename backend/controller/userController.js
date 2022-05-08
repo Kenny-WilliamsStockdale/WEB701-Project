@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt');
 //@access Public
 // Register new user
 const registerUser = async (req, res, next) => {
-    const { firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary } = req.body;
+    const { firstName, lastName, userName, emailAddress, password, isMember, isBeneficiary, tokens } = req.body;
     try {
         //Validating user data
         if (!firstName || !lastName || !userName || !emailAddress || !password) {
@@ -49,6 +49,7 @@ const registerUser = async (req, res, next) => {
                 password: password,
                 isMember: isMember,
                 isBeneficiary: isBeneficiary,
+                tokens: tokens
             });
             await newUser.save();
             res.status(200).json({
@@ -73,6 +74,7 @@ const registerUser = async (req, res, next) => {
                 isMember: isMember,
                 isBeneficiary: isBeneficiary,
                 vouchers: 10,
+                tokens: tokens
             });
             await newUser.save();
             res.status(200).json({

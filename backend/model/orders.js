@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  status:
+  statusCompleted:
   {
     type: Boolean,
     required: true,

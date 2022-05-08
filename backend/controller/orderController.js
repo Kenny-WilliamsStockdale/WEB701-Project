@@ -26,7 +26,7 @@ const createToken = () => {
 const createOrder = async (req, res, next) => {
     const { emailAddress, product, subtotal } = req.body;
     const token = createToken();
-    const user = await users.findOneAndUpdate({ emailAddress: emailAddress }, {$push: { tokenId: token}});
+    const user = await users.findOneAndUpdate({ emailAddress: emailAddress }, {$push: { tokens: token}});
     if (!user) {
         return res.status(404).json({
             message: 'User does not exist'

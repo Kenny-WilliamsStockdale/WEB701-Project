@@ -48,14 +48,14 @@ function CartModal() {
         .post( '/order/newOrder', {
           emailAddress: userInfo.data.emailAddress,
           product: findProduct,
-          subtotal: findVoucherPrice,
+          subtotal: findTotalPrice,
         })
         .then(res => {
           setMessage(res.data.message);
           setTimeout(() => {
             setShow(false);
             setMessage('');
-            setCart([]);
+            localStorage.removeItem('cart');
           }, 2000);
         })
         .catch(err => {

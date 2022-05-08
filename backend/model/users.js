@@ -38,6 +38,11 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: [false, "Vouchers"]
     },
+    tokens: {
+        type: String,
+        required: [false, "Tokens"],
+        default: [],
+    }
 },{
     timestamp:true,//this will check when the user is created and updated
 });

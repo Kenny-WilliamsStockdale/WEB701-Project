@@ -31,7 +31,6 @@ const AccountEdit = () => {
       emailAddress: emailAddress,
       password: password,
     }
-    console.log(data);
     axios
       .put('/user/editUser/', data)
       .then(res => {

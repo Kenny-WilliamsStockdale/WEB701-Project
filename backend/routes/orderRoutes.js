@@ -28,10 +28,10 @@ router.put('/editOrder/:id', editOrder)
 router.delete('/delete/:id', deleteOrder)
 
 //@desc   view order
-//@route  GET /order/view/:id
+//@route  POST /order/view/
 //@access Public
 //view order
-router.get('/view/:id', viewOrder)
+router.post('/view/', viewOrder)
 
 //@desc   claim order
 //@route  GET /order/claim/:id

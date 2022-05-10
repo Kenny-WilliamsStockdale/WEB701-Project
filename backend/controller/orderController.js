@@ -26,7 +26,7 @@ const createToken = () => {
 const createOrder = async (req, res, next) => {
     const { emailAddress, product, subtotal } = req.body;
     const token = createToken();
-    const user = await Users.findOneAndUpdate({ emailAddress: emailAddress }, {$push: { tokens: token} });
+    const user = await Users.findOneAndUpdate({ emailAddress: emailAddress }, { $push: { tokens: token } });
     if (!user) {
         return res.status(404).json({
             message: 'User does not exist'
@@ -62,11 +62,29 @@ const deleteOrder = async (req, res, next) => {
 }
 
 //@desc   view order
-//@route  GET /order/view/:id
+//@route  POST /order/view/
 //@access Public
-//view order
+// POST view order
 const viewOrder = async (req, res, next) => {
-    res.status(200).send("View order stub")
+    const { emailAddress } = req.body;
+    const user = await Users.findOne({ emailAddress: emailAddress });
+    if (!user) {
+        return res.status(404).json({
+            message: 'User does not exist'
+        });
+    }
+    //find one order by tokenId
+    const order = await Orders.findOne({ tokenId: req.body.tokenId });
+    if (!order) {
+        return res.status(404).json({
+            message: 'Order does not exist'
+        });
+    }
+    res.status(200).json({
+        success: true,
+        data: order,
+        message: 'Order found'
+    })
 }
 
 //@desc   claim order

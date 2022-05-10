@@ -66,7 +66,7 @@ const Account = () => {
               {error && <Message variant='danger'>{error}</Message>}
             </div>
             <div className="card-body">
-              <form>
+                <form>
                 <div className="form-group">
                   <label htmlFor="firstName">First Name</label>
                   <input readOnly type="text" className="form-control" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
@@ -107,9 +107,12 @@ const Account = () => {
           </div>
         </div>
       </div>
-    </div>
-    <TokenList />
-    </>
+      {userInfo.data.isMember ? (
+                null
+              ) : (
+                <TokenList/>
+              )}
+    </div></>
   )
 }
 

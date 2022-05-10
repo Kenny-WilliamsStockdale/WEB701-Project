@@ -62,12 +62,11 @@ function CartModal() {
           }
           , 2000);
         });
-        // get user email address from database
+        // get user email address from database to update user and send to localStorage
       axios
         .post('/user/', { emailAddress: userInfo.data.emailAddress })
         .then(res => {
           localStorage.setItem('userInfo', JSON.stringify(res.data));
-          console.log(res.data);
         }
         )
         .catch(err => {

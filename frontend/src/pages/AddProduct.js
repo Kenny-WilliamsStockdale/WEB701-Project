@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Loading from '../components/Loader'
 import Message from '../components/Message'
+import MemberProduct from '../components/MemberProduct'
 import './AddProduct.css'
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -17,9 +18,11 @@ const AddProduct = () => {
   const [voucherPrice, setVoucherPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [category, setCategory] = useState('');
+  const [memberId, setMemberId] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   const handleAddProductSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +32,7 @@ const AddProduct = () => {
       setLoading(false);
     } else {
       axios
-        .post('/product/addProduct', { name, description, voucherPrice, imageUrl, category })
+        .post('/product/addProduct', { name, description, voucherPrice, imageUrl, category, memberId: userInfo.data._id })
         .then((res) => {
           setLoading(false);
           setMessage(res.data.message);
@@ -46,7 +49,7 @@ const AddProduct = () => {
     }
   }
   return (
-    <div className="container">
+    <><div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <h1 className="text-center">Add Product</h1>
@@ -54,7 +57,7 @@ const AddProduct = () => {
           {message && <Message variant='success'>{message}</Message>}
           {error && <Message variant='danger'>{error}</Message>}
           {loading && <Loading />}
-          <form onSubmit={handleAddProductSubmit} >
+          <form onSubmit={handleAddProductSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input type="text" className="form-control" id="name" placeholder="Enter name" onChange={(e) => setName(e.target.value)} />
@@ -79,7 +82,7 @@ const AddProduct = () => {
           </form>
         </div>
       </div>
-    </div>
+    </div><MemberProduct /></>
   )
 }
 export default AddProduct

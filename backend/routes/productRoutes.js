@@ -4,6 +4,7 @@ router = express.Router();
 const {
     getProduct,
     addProduct,
+    getProductByMemberId,
     editProduct,
     deleteProduct,
     viewProduct
@@ -15,6 +16,12 @@ const {
 //@access Public
 // add product
 router.get('/products', getProduct);
+
+//@desc   get product belongs to member
+//@route  POST /product/products/memberId
+//@access Public
+// get product belongs to member
+router.post('/products/memberId', getProductByMemberId);
 
 //@desc   add product
 //@route  POST /product/addProduct

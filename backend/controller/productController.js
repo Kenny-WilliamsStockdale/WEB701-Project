@@ -8,7 +8,7 @@ const products = require('../model/product');
 //@desc   get product
 //@route  GET /product/products
 //@access Public
-// add product
+// get product
 const getProduct = async (req, res, next) => {
     try {
         const product = await products.find({});
@@ -22,6 +22,25 @@ const getProduct = async (req, res, next) => {
             message: 'Invalid product data'
         });
 
+    }
+}
+
+//@desc   get product belongs to member
+//@route  POST /product/products/memberId
+//@access Public
+// get product belongs to member
+const getProductByMemberId = async (req, res, next) => {
+    try {
+        const product = await products.find({ memberId: req.body.memberId });
+        res.status(200).json({
+            success: true,
+            data: product,
+            message: 'Product found'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid product data'
+        });
     }
 }
 
@@ -43,6 +62,7 @@ const addProduct = async (req, res, next) => {
         });
     }
 }
+
 
 //@desc   edit product
 //@route  PUT /product/edit/:id
@@ -85,6 +105,7 @@ const viewProduct = async (req, res, next) => {
     module.exports = {
         getProduct,
         addProduct,
+        getProductByMemberId,
         editProduct,
         deleteProduct,
         viewProduct

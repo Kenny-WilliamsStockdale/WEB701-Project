@@ -2,6 +2,7 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React, { useState, useEffect } from 'react'
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -18,6 +19,7 @@ const MemberProduct = () => {
       .post('/product/products/memberId', { memberId })
       .then(res => {
         setProducts(res.data.data);
+        console.log(res.data.data);
       }
       )
       .catch(err => {
@@ -39,20 +41,23 @@ const MemberProduct = () => {
           <table className="table table-striped">
             <thead>
               <tr>
+                <th scope="col">ProductID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Description</th>
                 <th scope="col">Voucher Price</th>
+                <th scope="col">Product Claimed?</th>
               </tr>
             </thead>
             <tbody>
               {products ? (
                 products.map(product => {
                   return (
-                    <tr key={product._id}>
+                    <><tr key={product._id}>
+                      <td>{product._id}</td>
                       <td>{product.name}</td>
-                      <td>{product.description}</td>
                       <td>{product.voucherPrice}</td>
-                    </tr>
+                      <td>{product.claimed ? 'Yes' : 'No'}</td>
+                      <td><Button variant="primary">Update Claim</Button></td>
+                    </tr></>
                   )
                 }
                 )

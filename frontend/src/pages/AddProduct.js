@@ -19,6 +19,7 @@ const AddProduct = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [category, setCategory] = useState('');
   const [memberId, setMemberId] = useState('');
+  const [claimedStatus, setClaimedStatus] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -32,7 +33,7 @@ const AddProduct = () => {
       setLoading(false);
     } else {
       axios
-        .post('/product/addProduct', { name, description, voucherPrice, imageUrl, category, memberId: userInfo.data._id })
+        .post('/product/addProduct', { name, description, voucherPrice, imageUrl, category, memberId: userInfo.data._id, claimedStatus: false })
         .then((res) => {
           setLoading(false);
           setMessage(res.data.message);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // defines the product schema
 const ProductSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: 'string',
         required: true,
     },
@@ -29,8 +29,13 @@ const ProductSchema = new mongoose.Schema({
     memberId: {
         type: 'string',
         required: true,
+    },
+    claimedStatus: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
-const product  = mongoose.model("product", ProductSchema);
+const product = mongoose.model("product", ProductSchema);
 module.exports = product

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Landing from './pages/Landing';
 import Product from './pages/Product';
+import AddProduct from './pages/AddProduct';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AccountEdit from './pages/AccountEdit';
@@ -30,6 +31,7 @@ const App = () => (
         <Route path="/AccountEdit" element={<AccountEdit />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         <Route path="/Cart" element={<Cart />} />
+        <Route path="/addProduct" element={<AddProduct />} />
       </Routes>
     </main>
     <Footer />

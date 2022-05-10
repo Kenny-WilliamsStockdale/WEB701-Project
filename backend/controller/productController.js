@@ -28,9 +28,20 @@ const getProduct = async (req, res, next) => {
 //@desc   add product
 //@route  POST /product/addProduct
 //@access Public
-// add product
+// add product to database
 const addProduct = async (req, res, next) => {
-    res.status(200).send("Add product stub")
+    try {
+        const product = await products.create(req.body);
+        res.status(201).json({
+            success: true,
+            data: product,
+            message: 'Product added'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid product data'
+        });
+    }
 }
 
 //@desc   edit product

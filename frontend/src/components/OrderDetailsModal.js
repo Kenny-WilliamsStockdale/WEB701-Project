@@ -44,7 +44,6 @@ function OrderDetailsModal(token) {
       orderInfo.data.statusCompleted = true;
       localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
       setOrderInfo(orderInfo);
-      console.log(orderInfo)
       //TODO:push info to database for update
     } else {
       orderInfo.data.statusCompleted = false;

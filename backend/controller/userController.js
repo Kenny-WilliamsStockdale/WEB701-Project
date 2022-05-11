@@ -96,7 +96,6 @@ const registerUser = async (req, res, next) => {
 // get user by email address
 const getUser = async (req, res, next) => {
     const { emailAddress } = req.body;
-    console.log(req.body);
     Users.findOne({emailAddress})
         .then((user) => {
             if (!user) {

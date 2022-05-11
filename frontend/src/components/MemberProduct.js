@@ -46,7 +46,6 @@ const MemberProduct = () => {
     if (product.claimedStatus === false) {
       product.claimedStatus = true;
       localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
-      console.log(memberProducts)
     }
     else {
       product.claimedStatus = false;

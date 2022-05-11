@@ -15,6 +15,7 @@ function OrderDetailsModal(token) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
 
   // get list of orders from database relating to current user
   const ViewOrder = () => {
@@ -36,6 +37,23 @@ function OrderDetailsModal(token) {
       }
       )
   }
+
+  //update order status
+  const updateOrderStatus = () => {
+    if (orderInfo.data.statusCompleted === false) {
+      orderInfo.data.statusCompleted = true;
+      localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+      setOrderInfo(orderInfo);
+      console.log(orderInfo)
+      //TODO:push info to database for update
+    } else {
+      orderInfo.data.statusCompleted = false;
+      localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+      setOrderInfo(orderInfo);
+    }
+  }
+
+
   // modal
   return (
     <div>
@@ -52,6 +70,9 @@ function OrderDetailsModal(token) {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
+          </Button>
+          <Button variant="primary" onClick={ updateOrderStatus }>
+            Update order status
           </Button>
         </Modal.Footer>
       </Modal>

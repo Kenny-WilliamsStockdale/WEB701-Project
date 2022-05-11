@@ -13,12 +13,14 @@ const MemberProduct = () => {
   const [error, setError] = useState('');
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [memberId, setMemberId] = useState(userInfo.data._id);
+  const memberProducts = JSON.parse(localStorage.getItem('memberProducts'));
 
   const getProducts = () => {
     axios
       .post('/product/products/memberId', { memberId })
       .then(res => {
         setProducts(res.data.data);
+        localStorage.setItem('memberProducts', JSON.stringify(res.data.data));
         console.log(res.data.data);
       }
       )
@@ -30,7 +32,29 @@ const MemberProduct = () => {
   useEffect(() => {
     getProducts();
   }
-  , [])
+    , [])
+
+    console.log(memberProducts.map(product => {
+      return product;
+    }
+    )
+    )
+  //update claimed status of product
+  //TODO:push info to database for update to be pulled again (conceptual at the moment)
+  const updateClaimedStatus = () => {
+    memberProducts.map(product => {
+    if (product.claimedStatus === false) {
+      product.claimedStatus = true;
+      localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
+      console.log(memberProducts)
+    }
+    else {
+      product.claimedStatus = false;
+      localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
+    }
+  }
+  )
+  }
 
   return (
     <div className="container">
@@ -55,8 +79,8 @@ const MemberProduct = () => {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.voucherPrice}</td>
-                      <td>{product.claimed ? 'Yes' : 'No'}</td>
-                      <td><Button variant="primary">Update Claim</Button></td>
+                      <td>{product.claimedStatus ? 'Yes' : 'No'}</td>
+                      <td><Button variant="primary" onClick={updateClaimedStatus} >Update Claim</Button></td>
                     </tr></>
                   )
                 }

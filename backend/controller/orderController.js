@@ -17,6 +17,26 @@ const createToken = () => {
     return token;
 }
 
+//@desc   get all orders
+//@route  GET /order/getAllOrders/
+//@access Public
+// get all Orders
+const getAllOrders = async (req, res, next) => {
+    try {
+        const orders = await Orders.find();
+        return res.status(200).json({
+            success: true,
+            count: orders.length,
+            data: orders
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error: "Server Error"
+        });
+    }
+}
+
 //@desc   create order
 //@route  POST /order/newOrder
 //@access Public
@@ -98,6 +118,7 @@ const claimOrder = async (req, res, next) => {
 /* -------------------------- ANCHOR module section ------------------------- */
 
 module.exports = {
+    getAllOrders,
     createOrder,
     editOrder,
     deleteOrder,

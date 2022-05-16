@@ -2,12 +2,19 @@ const express = require('express');
 router = express.Router();
 
 const {
+    getAllOrders,
     createOrder,
     editOrder,
     deleteOrder,
     viewOrder,
     claimOrder
 } = require('../controller/orderController')
+
+//@desc   get all orders
+//@route  GET /order/getAllOrders/
+//@access Public
+// get all Orders
+router.get('/getAllOrders', getAllOrders);
 
 //@desc   create order
 //@route  POST /order/newOrder

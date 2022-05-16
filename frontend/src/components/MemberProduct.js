@@ -34,11 +34,11 @@ const MemberProduct = () => {
   }
     , [])
 
-    console.log(memberProducts.map(product => {
-      return product;
-    }
-    )
-    )
+    // console.log(memberProducts.map(product => {
+    //   return product;
+    // }
+    // )
+    // )
   //update claimed status of product
   //TODO:push info to database for update to be pulled again (conceptual at the moment)
   const updateClaimedStatus = () => {

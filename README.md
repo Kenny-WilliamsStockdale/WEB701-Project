@@ -11,7 +11,7 @@ The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web7
 Check .env file reads the following: 
 
 PORT = 5001
-MONGO_URI = mongodb+srv://WEB701Project:WEB701Project@cluster0.pumg5.mongodb.net/local?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://WEB701Project:WEB701Project@cluster0.pumg5.mongodb.net/shop?retryWrites=true&w=majority
 
 Database hosted via cloudbased hosting.
 

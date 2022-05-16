@@ -4,6 +4,7 @@
 The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web701-project
 
 ## How to start the application
+`npm install` - to make sure you have the necessary npm modules. 
 1. Use `npm start` to launch the backend application only.
 2. Use `npm run client` to launch the frontend application only.
 3. Use `npm run dev` to launch both backend and frontend applications concurrently.
@@ -11,7 +12,7 @@ The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web7
 Check .env file reads the following: 
 
 PORT = 5001
-MONGO_URI = mongodb+srv://WEB701Project:WEB701Project@cluster0.pumg5.mongodb.net/local?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://WEB701Project:WEB701Project@cluster0.pumg5.mongodb.net/shop?retryWrites=true&w=majority
 
 Database hosted via cloudbased hosting.
 

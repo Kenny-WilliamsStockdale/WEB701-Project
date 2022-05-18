@@ -651,23 +651,23 @@ Both frameworks share similarities in functionality and are both open source. Du
 
 React is widely known as the most popular library for building complex and simplistic apps. It has been around since 2011 and has captured the attention of hundreds of businesses, organisations, and developers. Its main purpose is to be fast, scalable, and simple. (Gawkowski, 2022).
 
-React is:
-•	Search engine optimisation (SEO) friendly
-•	Stable
-•	Has a large community and following
-•	Still growing and evolving
-•	Provides ready-made components
-•	Code is scalable and can be reused for future purpose
-•	Used by many famous companies e.g., Facebook, Amazon, Netflix, and Uber.
+  React is:
+- Search engine optimisation (SEO) friendly
+- Stable
+-	Has a large community and following
+-	Still growing and evolving
+-	Provides ready-made components
+-	Code is scalable and can be reused for future purpose
+-	Used by many famous companies e.g., Facebook, Amazon, Netflix, and Uber.
 
 Svelte on the other hand is a newer technology only having been around for 7 years when compared to React. It is focused on letting developers build what they need and want. Svelte does not use a virtual DOM in the browser and is often compared to being a compiler. Instead, Svelte complies code into vanilla JS and as a result the code works much faster. (Twardowska, 2022).
 
 Svelte features:
-•	Simplistic
-•	Includes styles and animations out of the box
-•	UI first
-•	Fast
-•	No virtual DOM
+-	Simplistic
+-	Includes styles and animations out of the box
+-	UI first
+-	Fast
+-	No virtual DOM
 
 Svelte has strong benefits but the framework is newer compared to React. This means there is not as large of a following in the way community support and or awareness of the framework. There are a multitude of improvements to be had when it comes to svelte such as more IDE support.
 

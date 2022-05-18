@@ -1,6 +1,5 @@
 require("dotenv").config({path: './../.env'});
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
 const connectDB = require('./db')
 const { notFound, errorHandler } = require('./middlewares/error.middleware')

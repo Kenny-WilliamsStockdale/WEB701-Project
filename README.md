@@ -6,6 +6,10 @@ MongoDB, Express.JS, React, Node.JS
 ## Link to secondary stack
 https://github.com/Kenny-WilliamsStockdale/MESN-Full-Stack.git
 
+## Project report
+It is recommended that you read the report before starting the project.
+The markdown (.md) version of the report is the best for viewing.
+
 ## Project Planning
 The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web701-project
 

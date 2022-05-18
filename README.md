@@ -1,5 +1,11 @@
 # WEB701-Project
 
+# MERN-Full-Stack
+MongoDB, Express.JS, React, Node.JS
+
+## Link to secondary stack
+https://github.com/Kenny-WilliamsStockdale/MESN-Full-Stack.git
+
 ## Project Planning
 The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web701-project
 

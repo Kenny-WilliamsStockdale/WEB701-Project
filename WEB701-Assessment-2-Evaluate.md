@@ -187,11 +187,11 @@ module.exports = connectDB;
 
 #### Dotenv
 Inside the dotenv file (which is placed in the root of the project folder) sensitive data is contained.
-•	MONGO_URI – URI provided from MongoDB connection.
-•	JWT_SECRET – JSON web token for authentication and session use.
-•	SESSION_SECRET – A key to create the express session.
-•	SESSION_TIME – Maximum time that a session will last.
-•	PORT – Port number
+-	MONGO_URI – URI provided from MongoDB connection.
+-	JWT_SECRET – JSON web token for authentication and session use.
+-	SESSION_SECRET – A key to create the express session.
+-	SESSION_TIME – Maximum time that a session will last.
+-	PORT – Port number
 *Note: Some of these credentials are not present in the current prototype build but will be in the next iteration of the web application.*
 
 #### Server.js

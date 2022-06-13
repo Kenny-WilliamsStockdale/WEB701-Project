@@ -1,3 +1,43 @@
 .intro-text {
   font-size: 2rem;
+  color: #f7d664;
+}
+/*grid 3 columns by 1 row*/
+.landing-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  padding: 10px;
+  background-color: #2c3e50;
+  align-items: center;
+  justify-items: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.landing-mid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+.intro-text-container{
+  width: 30rem;
+}
+.landing-pic-container{
+    object-fit:cover;
+    object-position: right;
+    width: 30rem;
+    height: 20rem;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.landing-pic {
+  width: 30rem;
+  height: auto;
 }

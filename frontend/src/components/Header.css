@@ -8,6 +8,16 @@
   text-transform: uppercase;
   font-weight: bold;
 }
+.brand-img {
+  width: 20rem;
+  height: auto;
+}
+/*media screen of brand-img*/
+@media (max-width: 350px) {
+  .brand-img {
+    width: 15rem;
+  }
+}
 .brand:hover {
   color: rgb(255, 255, 255);
   text-decoration: none;
@@ -17,22 +27,22 @@
 }
 
 #nav-product {
-  color: rgb(255, 255, 255);
+  color: #f7d664;
   text-decoration: none;
 }
 
 #nav-cart {
-  color: rgb(255, 255, 255);
+  color: #f7d664;
   text-decoration: none;
 }
 
 #nav-login {
-  color: rgb(255, 255, 255);
+  color: #f7d664;
   text-decoration: none;
 }
 
 #basic-nav-dropdown{
-  color: rgb(255, 255, 255);
+  color: #f7d664;
 }
 
 .dropdown-menu.show {
@@ -40,9 +50,14 @@
 }
 
 #nav-dropdown-item {
-  color: rgb(255, 255, 255);
+  color: #f7d664;
 }
 
 #dropdown-item:hover {
   background-color: #3e5770;
+}
+
+.navbar-dark .navbar-toggler {
+  color: rgba(255, 255, 255, 0) !important;
+  border-color: #2c3e5000 !important;
 }

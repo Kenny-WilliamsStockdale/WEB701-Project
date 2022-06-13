@@ -94,7 +94,7 @@ const Account = () => {
                     <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.isBeneficiary = "Yes"} onChange={(e) => setIsBeneficiary(e.target.value)} />
                   </div>
                     <div className="form-group">
-                      <label htmlFor="isBeneficiary">Number of Vouchers</label>
+                      <label htmlFor="isBeneficiary">Tokens</label>
                       <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.vouchers} onChange={(e) => setVouchers(e.target.value)} />
                     </div></>
                     {/* list of orders */}

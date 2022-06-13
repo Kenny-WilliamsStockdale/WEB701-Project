@@ -18,6 +18,7 @@ const AccountEdit = () => {
   const [userName, setUserName] = useState('')
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [Loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -30,7 +31,10 @@ const AccountEdit = () => {
       userName: userName,
       emailAddress: emailAddress,
       password: password,
+      confirmPassword: confirmPassword
     }
+    // check if password and confirm password match
+    if (password == confirmPassword) {
     axios
       .put('/user/editUser/', data)
       .then(res => {
@@ -44,6 +48,9 @@ const AccountEdit = () => {
       .catch(err => {
         console.log(err);
       })
+    } else {
+        setError('Password and confirm password do not match')
+    }
   }
 
   useEffect(() => {
@@ -51,7 +58,8 @@ const AccountEdit = () => {
     setLastName(userInfo.data.lastName);
     setUserName(userInfo.data.userName);
     setEmailAddress(userInfo.data.emailAddress);
-    setPassword(userInfo.data.password);
+    setPassword("");
+    setConfirmPassword("");
   }, [])
 
   return (
@@ -84,8 +92,12 @@ const AccountEdit = () => {
                   <input type="email" className="form-control" id="emailAddress" placeholder="Enter Email Address" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="emailAddress">Password</label>
+                  <label htmlFor="password">Password</label>
                   <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input type="password" className="form-control" id="confirmPassword" placeholder="Enter password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
               </form>
               <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Submit</button>

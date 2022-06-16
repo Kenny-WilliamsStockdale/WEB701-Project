@@ -64,20 +64,23 @@ const ProductDetails = () => {
         <div className="product-detail-image">
           <img className="product-image" src={products.data.imageUrl} alt="product" />
         </div>
-        <div className="product-detail-info">
+      </div>
+      <div className="product-detail-info">
           <h1>{products.data.name}</h1>
           <p>{products.data.description}</p>
           <p>
-            <strong>Price:</strong> {products.data.voucherPrice}
+            <strong>Quantity:</strong> {products.data.countInStock}
+          </p>
+          <p>
+            <strong>Price:</strong> {products.data.voucherPrice} Tokens
           </p>
           <Link to="/Product">
-            <Button variant="primary">Back</Button>
+            <Button variant="primary" id="btn-back">Back</Button>
           </Link>
           <Link to="/Product">
-            <Button variant="primary" onClick={handleClaim}>Claim</Button>
+            <Button variant="primary" id="btn-claim" onClick={handleClaim}>Claim</Button>
           </Link>
         </div>
-      </div>
     </div>
   );
 }

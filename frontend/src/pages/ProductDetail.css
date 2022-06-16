@@ -3,3 +3,13 @@
   max-width: 400px;
   height: auto;
 }
+.card-body{
+  background-color: #f6f8f6;
+  color: #2b3d51;
+}
+.product-container{
+  grid-gap: 20px;
+}
+#btn-claim{
+  margin-left:  10px;
+}

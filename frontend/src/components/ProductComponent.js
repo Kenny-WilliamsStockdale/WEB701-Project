@@ -4,7 +4,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
-
+import './ProductComponent.css'
 
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -24,7 +24,7 @@ const Product = ({product}) => {
         <Card.Title>{product.name}</Card.Title>
         <Card.Text>{product.description}</Card.Text>
         <Card.Text>
-          <strong>Price:</strong> {product.voucherPrice}
+          <strong>Price:</strong> {product.voucherPrice} Tokens
         </Card.Text>
       </Card.Body>
     </Card>

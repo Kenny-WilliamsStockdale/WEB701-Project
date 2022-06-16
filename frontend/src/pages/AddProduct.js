@@ -15,6 +15,7 @@ const AddProduct = () => {
   const navigate = useNavigate()
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [countInStock, setCountInStock] = useState('');
   const [voucherPrice, setVoucherPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [category, setCategory] = useState('');
@@ -33,7 +34,7 @@ const AddProduct = () => {
       setLoading(false);
     } else {
       axios
-        .post('/product/addProduct', { name, description, voucherPrice, imageUrl, category, memberId: userInfo.data._id, claimedStatus: false })
+        .post('/product/addProduct', { name, description, countInStock, voucherPrice, imageUrl, category, memberId: userInfo.data._id, claimedStatus: false })
         .then((res) => {
           setLoading(false);
           setMessage(res.data.message);
@@ -69,6 +70,10 @@ const AddProduct = () => {
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
                   <input type="text" className="form-control" id="description" placeholder="Enter description" onChange={(e) => setDescription(e.target.value)} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="countInStock">Count In Stock</label>
+                  <input type="text" className="form-control" id="countInStock" placeholder="Enter count in stock" onChange={(e) => setCountInStock(e.target.value)} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="voucherPrice">Voucher Price</label>

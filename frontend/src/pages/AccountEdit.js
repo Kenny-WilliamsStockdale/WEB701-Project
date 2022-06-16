@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loading from '../components/Loader'
 import Message from '../components/Message'
-import './Account.css'
+import './AccountEdit.css'
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
@@ -66,7 +66,7 @@ const AccountEdit = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3">
-          <div className="card">
+          <div className="card" id="cardAccount">
             <div className="card-header">
               <h3>Edit Account</h3>
               {message && <Message variant='success'>{message}</Message>}
@@ -100,8 +100,8 @@ const AccountEdit = () => {
                   <input type="password" className="form-control" id="confirmPassword" placeholder="Enter password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
               </form>
-              <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Submit</button>
-              <button className="btn btn-primary" type="submit" onClick={() => {navigate("/account")}}>Cancel</button>
+              <button className="btn btn-primary" id="btn-submit" type="submit" onClick={handleSubmit}>Submit</button>
+              <button className="btn btn-primary" id="btn-cancel" type="submit" onClick={() => {navigate("/account")}}>Cancel</button>
             </div>
           </div>
         </div>

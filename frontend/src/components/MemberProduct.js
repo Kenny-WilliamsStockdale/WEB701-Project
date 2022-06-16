@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+import './MemberProduct.css';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
@@ -34,44 +35,49 @@ const MemberProduct = () => {
   }
     , [])
 
-    // console.log(memberProducts.map(product => {
-    //   return product;
-    // }
-    // )
-    // )
+  // console.log(memberProducts.map(product => {
+  //   return product;
+  // }
+  // )
+  // )
   //update claimed status of product
   //TODO:push info to database for update to be pulled again (conceptual at the moment)
   const updateClaimedStatus = () => {
     memberProducts.map(product => {
-    if (product.claimedStatus === false) {
-      product.claimedStatus = true;
-      localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
+      if (product.claimedStatus === false) {
+        product.claimedStatus = true;
+        localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
+      }
+      else {
+        product.claimedStatus = false;
+        localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
+      }
     }
-    else {
-      product.claimedStatus = false;
-      localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
-    }
-  }
-  )
+    )
   }
 
   return (
+    // card list for products
     <div className="container">
       <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <h1 className="text-center">Products listed</h1>
-          <hr />
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">ProductID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Voucher Price</th>
-                <th scope="col">Product Claimed?</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products ? (
+        <div className="col-md-12">
+          <div className="card" id="card">
+            <div className="card-header">
+              <h4>Products</h4>
+            </div>
+            <div className="card-body">
+              <div className="table-responsive">
+                <table className="table table-striped">
+                  <thead>
+                    <tr>
+                    <th scope="col">ProductID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Voucher Price</th>
+                    <th scope="col">Product Claimed?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {products ? (
                 products.map(product => {
                   return (
                     <><tr key={product._id}>
@@ -90,7 +96,10 @@ const MemberProduct = () => {
                 </tr>
               )}
             </tbody>
-          </table>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

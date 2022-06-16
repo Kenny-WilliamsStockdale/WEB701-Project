@@ -59,7 +59,7 @@ const Account = () => {
     <><div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3">
-          <div className="card">
+          <div className="card" id="cardAccount">
             <div className="card-header">
               <h3>Account</h3>
               {message && <Message variant='success'>{message}</Message>}
@@ -101,8 +101,8 @@ const Account = () => {
                   </>
                 )}
               </form>
-              <button type="button" className="btn btn-primary" onClick={() => { navigate("/accountEdit") } }>Edit</button>
-              <button type="button" className="btn btn-primary" onClick={() => { deleteUser() } }>Delete</button>
+              <button type="button" className="btn btn-primary" id="btn-edit" onClick={() => { navigate("/accountEdit") } }>Edit</button>
+              <button type="button" className="btn btn-primary" id="btn-delete" onClick={() => { deleteUser() } }>Delete</button>
             </div>
           </div>
         </div>

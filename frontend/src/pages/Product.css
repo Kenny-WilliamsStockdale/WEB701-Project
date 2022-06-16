@@ -1,5 +1,6 @@
 .product-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   cursor: pointer;
   padding: 1rem;
 }
@@ -11,5 +12,12 @@
 @media screen and (max-width: 991px) {
   .product-container {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product-container {
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 }

@@ -39,7 +39,8 @@ const AddProduct = () => {
           setLoading(false);
           setMessage(res.data.message);
           setTimeout(() => {
-            navigate('/Product')
+            //reload the page
+            window.location.reload();
           }, 2000)
         }
         )

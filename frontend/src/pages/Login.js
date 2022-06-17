@@ -28,9 +28,16 @@ const Login = () => {
         setLoading(false);
         setMessage(res.data.message);
         localStorage.setItem('userInfo', JSON.stringify(res.data))
-        setTimeout(() => {
-          navigate('/Product')
-        }, 2000)
+        if (res.data.data.isMember === true) {
+          setTimeout(() => {
+            navigate('/addProduct')
+          }, 1000)
+        }
+        if (res.data.data.isBeneficiary === true) {
+          setTimeout(() => {
+            navigate('/Product')
+          }, 1000)
+        }
       })
       .catch((err) => {
         setLoading(false);

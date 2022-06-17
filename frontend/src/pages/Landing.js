@@ -20,10 +20,10 @@ const Landing = () => {
     if (localStorage.getItem('userInfo') === null) {
       navigate('/Login')
     }
-    if (userInfo.data.isMember === true) {
+    if (localStorage.getItem('userInfo') !== null && userInfo.data.isMember === true) {
       navigate('/addProduct')
     }
-    else {
+    if (localStorage.getItem('userInfo') !== null && userInfo.data.isMember === false) {
       navigate('/Product')
     }
   }

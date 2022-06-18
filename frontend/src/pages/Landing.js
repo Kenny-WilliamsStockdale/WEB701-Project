@@ -46,13 +46,13 @@ const Landing = () => {
             <FaGgCircle className="intro-text-mid-icon" />
             <p className="intro-text-mid">Our shop is open 7 days a week 9am to 5pm, and select evenings as announced on social media.</p>
           </div>
-          <div className="intro-text-container-mid">
-            <FaGratipay className="intro-text-mid-icon" />
-            <p className="intro-text-mid">Our heart is to impact people in New Zealand, showing them tangible value through clothing.</p>
-          </div>
           <div className="intro-text-container-right">
             <FaMegaport className="intro-text-mid-icon" />
             <p className="intro-text-mid">Our mission at Stuff and Things Clothing Charity is providing clothes for those in need with understanding, care and thoughtfulness.</p>
+          </div>
+          <div className="intro-text-container-mid">
+            <FaGratipay className="intro-text-mid-icon" />
+            <p className="intro-text-mid">Our heart is to impact people in New Zealand, showing them tangible value through clothing.</p>
           </div>
         </div>
       </div></>

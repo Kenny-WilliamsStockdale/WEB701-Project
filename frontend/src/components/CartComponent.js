@@ -73,6 +73,25 @@ function CartModal() {
           console.log(err);
         }
         )
+      // update product countInStock by _id and minus 1
+      ProductInfo.map(item => {
+        axios
+          .put('/product/updateProduct', {
+            _id: item.data._id,
+            countInStock: item.data.countInStock - 1,
+          })
+          .then(res => {
+            console.log(res);
+          }
+          )
+          .catch(err => {
+            console.log(err);
+          }
+          )
+      })
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   }
   useEffect(() => {

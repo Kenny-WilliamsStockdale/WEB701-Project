@@ -63,6 +63,26 @@ const addProduct = async (req, res, next) => {
     }
 }
 
+//@desc   update product countInStock
+//@route  PUT /product/updateProduct
+//@access Public
+// update product countInStock by _id and minus 1
+const updateProduct = async (req, res, next) => {
+    try {
+        const product = await products.findByIdAndUpdate(req.body._id, { $inc: { countInStock: -1 } });
+        res.status(200).json({
+            success: true,
+            data: product,
+            message: 'Product updated'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Invalid product data'
+        });
+    }
+}
+
+
 
 //@desc   edit product
 //@route  PUT /product/edit/:id
@@ -106,6 +126,7 @@ const viewProduct = async (req, res, next) => {
         getProduct,
         addProduct,
         getProductByMemberId,
+        updateProduct,
         editProduct,
         deleteProduct,
         viewProduct

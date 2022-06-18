@@ -5,6 +5,7 @@ const {
     getProduct,
     addProduct,
     getProductByMemberId,
+    updateProduct,
     editProduct,
     deleteProduct,
     viewProduct
@@ -28,6 +29,12 @@ router.post('/products/memberId', getProductByMemberId);
 //@access Public
 // add product
 router.post('/addProduct', addProduct)
+
+//@desc   update product countInStock
+//@route  POST /product/updateProduct
+//@access Public
+// update product countInStock -1
+router.put('/updateProduct', updateProduct)
 
 //@desc   edit product
 //@route  PUT /product/edit/:id

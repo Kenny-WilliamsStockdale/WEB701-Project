@@ -92,11 +92,11 @@ const AccountEdit = () => {
                   <input type="email" className="form-control" id="emailAddress" placeholder="Enter Email Address" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">New Password</label>
                   <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <label htmlFor="confirmPassword">Confirm New Password</label>
                   <input type="password" className="form-control" id="confirmPassword" placeholder="Enter password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
               </form>

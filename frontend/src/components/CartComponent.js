@@ -26,7 +26,7 @@ function CartModal() {
     if (ProductInfo === null || ProductInfo === undefined) {
       setError('Please add products to cart');
       setTimeout(() => {
-      window.location.reload();
+        window.location.reload();
       }, 2000);
     } else {
 
@@ -42,7 +42,7 @@ function CartModal() {
       })
       // post to database
       axios
-        .post( '/order/newOrder', {
+        .post('/order/newOrder', {
           emailAddress: userInfo.data.emailAddress,
           product: findProduct,
           subtotal: findTotalPrice,
@@ -60,9 +60,9 @@ function CartModal() {
           setTimeout(() => {
             setError('');
           }
-          , 2000);
+            , 2000);
         });
-        // get user email address from database to update user and send to localStorage
+      // get user email address from database to update user and send to localStorage
       axios
         .post('/user/', { emailAddress: userInfo.data.emailAddress })
         .then(res => {
@@ -72,12 +72,12 @@ function CartModal() {
         .catch(err => {
           console.log(err);
         }
-          )
+        )
     }
   }
   useEffect(() => {
   }
-  , [])
+    , [])
 
 
   return (
@@ -87,9 +87,9 @@ function CartModal() {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Cart</Modal.Title>
-          {message && <Message variant='success'>{message}</Message>}
-          {error && <Message variant='danger'>{error}</Message>}
         </Modal.Header>
+        {message && <Message variant='success'>{message}</Message>}
+        {error && <Message variant='danger'>{error}</Message>}
         <Modal.Body>
           {ProductInfo ? (
             <><div>
@@ -107,7 +107,21 @@ function CartModal() {
                 </div>
               ))}
             </div>
-            {ProductInfo.map((product) => (
+              <div className="cart-item-count">
+                <div className="cart-item-count-label"></div>
+                <div className="cart-item-count-value">Item Count:
+                  {ProductInfo.length}
+                </div>
+              </div>
+              <div className="cart-total-price">
+                <div className="cart-total-price-label"></div>
+                <div className="cart-total-price-value">Total Tokens Cost:
+                  {ProductInfo.reduce((total, product) => {
+                    return total + product.data.voucherPrice;
+                  }, 0)}
+                </div>
+              </div>
+              {ProductInfo.map((product) => (
                 <div key={product.data._id}>
                   <Button
                     variant="danger"
@@ -116,27 +130,13 @@ function CartModal() {
                       const newCart = cart.filter(
                         (item) => item.data._id !== product.data._id
                       );
-                      localStorage.setItem('cart', JSON.stringify(newCart));
-                      setCart(newCart);
+                      localStorage.removeItem('cart');
+                      setCart([]);
                     }}>Delete
                   </Button>
                 </div>
               ))}
-              <div className="cart-item-count">
-                <div className="cart-item-count-label">Item Count:</div>
-                <div className="cart-item-count-value">
-                  {ProductInfo.length}
-                </div>
-              </div>
-              <div className="cart-total-price">
-                <div className="cart-total-price-label">Total Vouchers Cost:</div>
-                <div className="cart-total-price-value">
-                  {ProductInfo.reduce((total, product) => {
-                    return total + product.data.voucherPrice;
-                  }, 0)}
-                </div>
-              </div>
-              </>
+            </>
           ) : (
             <div>
               <h1>No products in cart</h1>

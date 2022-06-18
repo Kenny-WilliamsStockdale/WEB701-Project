@@ -37,6 +37,7 @@ const Header = () => {
             id='dropdown-item'
             onClick={() => {
               navigate("/account");
+              window.location.reload();
             }}
           >
             <Nav.Link id='nav-dropdown-item'>Profile</Nav.Link>

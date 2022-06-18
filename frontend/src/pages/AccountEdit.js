@@ -34,7 +34,7 @@ const AccountEdit = () => {
       confirmPassword: confirmPassword
     }
     // check if password and confirm password match
-    if (password == confirmPassword) {
+    if (password == confirmPassword && password.length >= 8 && confirmPassword.length >= 8) {
     axios
       .put('/user/editUser/', data)
       .then(res => {
@@ -49,7 +49,7 @@ const AccountEdit = () => {
         console.log(err);
       })
     } else {
-        setError('Password and confirm password do not match')
+        setError('Passwords do not match or length is too short')
     }
   }
 
@@ -86,10 +86,6 @@ const AccountEdit = () => {
                 <div className="form-group">
                   <label htmlFor="userName">User Name</label>
                   <input type="text" className="form-control" id="userName" placeholder="Enter User Name" value={userName} onChange={(e) => setUserName(e.target.value)} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="emailAddress">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" placeholder="Enter Email Address" value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">New Password</label>

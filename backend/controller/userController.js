@@ -212,7 +212,7 @@ const editUser = async (req, res, next) => {
                 message: 'User does not exist'
             });
         }
-        const { firstName, lastName, userName, password, isMember, isBeneficiary } = req.body;
+        const { firstName, lastName, userName, password } = req.body;
         if (firstName) {
             user.firstName = firstName;
         }
@@ -224,12 +224,6 @@ const editUser = async (req, res, next) => {
         }
         if (password) {
             user.password = password;
-        }
-        if (isMember) {
-            user.isMember = isMember;
-        }
-        if (isBeneficiary) {
-            user.isBeneficiary = isBeneficiary;
         }
         await user.save();
         res.status(200).json({

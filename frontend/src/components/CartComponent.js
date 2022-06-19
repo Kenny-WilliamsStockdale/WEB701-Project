@@ -92,7 +92,6 @@ function CartModal() {
           })
           .then(res => {
             console.log(res);
-
           }
           )
           .catch(err => {
@@ -100,19 +99,42 @@ function CartModal() {
           }
           )
       })
-      //minus a isBeneficiary token from their account
-      
-
-      // reload window after 2.5 seconds
-      setTimeout(() => {
-        window.location.reload();
-      }, 2500);
+      // update userInfo.data.tokens, minus 1, then push to database and pull back to localStorage
+      // update database userInfo.data.tokens
+      axios
+        .put('/user/editUser/token/', {
+          emailAddress: userInfo.data.emailAddress,
+          tokens: userInfo.data.tokens - 1,
+        })
+        .then(res => {
+          console.log(res);
+          // get userInfo.data.tokens from database and send to localStorage
+          axios
+            .post('/user/', { emailAddress: userInfo.data.emailAddress })
+            .then(res => {
+              localStorage.setItem('userInfo', JSON.stringify(res.data));
+            }
+            )
+            .catch(err => {
+              console.log(err);
+            }
+            )
+        }
+        )
+        .catch(err => {
+          console.log(err);
+        }
+        )
     }
+    // reload window after 2.5 seconds
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
   }
+
   useEffect(() => {
   }
     , [])
-
 
   return (
     <>

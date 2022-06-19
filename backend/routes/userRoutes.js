@@ -8,6 +8,7 @@ const {
     loginUser,
     logoutUser,
     editUser,
+    editUserToken,
     deleteUser
 } = require('../controller/userController')
 
@@ -48,6 +49,12 @@ router.post('/logout/', logoutUser)
 //@access Public
 //edit user details
 router.put('/editUser/', editUser)
+
+//@desc   edit user token minus 1
+//@route  PUT /user/editUser/token/:userEmail
+//@access Public
+//edit user token minus 1
+router.put('/editUser/token/', editUserToken)
 
 //@desc   delete user
 //@route  DELETE /user/deleteUser/:userEmail

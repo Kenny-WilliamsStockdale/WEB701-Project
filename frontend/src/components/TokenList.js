@@ -22,7 +22,7 @@ const TokenList = () => {
       console.log(err);
     }
     )
- // set token from user information
+  // set token from user information
   useEffect(() => {
     setProductId(userInfo.data.productId);
   }, [])
@@ -32,33 +32,42 @@ const TokenList = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6 offset-md-3">
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Tokens</th>
-                  <th scope="col">Order Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                {productId ? (
-                  productId.map(productId => {
-                    return (
-                      <tr key={productId._id}>
-                        <td>{productId}</td>
-                        <td>
-                          <OrderDetailsModal token={productId} />
-                        </td>
+            <div className="card" id="card">
+              <div className="card-header">
+                <h4>Products Claimed</h4>
+              </div>
+              <div className="card-body">
+                <div className="table-responsive">
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Order Details</th>
                       </tr>
-                    )
-                  }
-                  )
-                ) : (
-                  <tr>
-                    <td>No Tokens</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                      {productId ? (
+                        productId.map(productId => {
+                          return (
+                            <tr key={productId._id}>
+                              <td>{productId}</td>
+                              <td>
+                                <OrderDetailsModal token={productId} />
+                              </td>
+                            </tr>
+                          )
+                        }
+                        )
+                      ) : (
+                        <tr>
+                          <td>No Tokens</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -199,6 +199,35 @@ const logoutUser = async (req, res, next) => {
     }
 }
 
+//@desc   edit user token minus 1
+//@route  PUT /user/editUser/token/:userEmail
+//@access Public
+//edit user token minus 1
+const editUserToken = async (req, res, next) => {
+    const { emailAddress } = req.body;
+    try {
+        const user = await Users.findOne({ emailAddress: emailAddress });
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found'
+            });
+        }
+        user.tokens = user.tokens - 1;
+        await user.save();
+        res.status(200).json({
+            success: true,
+            data: user,
+            message: 'User token edited successfully'
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Invalid user data'
+        });
+    }
+}
+
+
 //@desc   edit user details
 //@route  PUT /user/editUser/:userEmail
 //@access Public
@@ -273,5 +302,6 @@ module.exports = {
     loginUser,
     logoutUser,
     editUser,
+    editUserToken,
     deleteUser
 };

@@ -25,7 +25,6 @@ function OrderDetailsBodyModal() {
           )
         }
         )}
-      <h5>Order Status: {orderInfo.data.statusCompleted ? 'Completed' : 'Pending'}</h5>
       <h5>Order Total: {orderInfo.data.subtotal} Tokens</h5>
     </div>
   )

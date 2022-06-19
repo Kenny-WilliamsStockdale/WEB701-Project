@@ -17,3 +17,8 @@
   border-color: #f7d664 !important;
   box-shadow: 0 0 0 0.25rem #f7d7644e !important;
 }
+
+.btn-primary:focus {
+  border-color: #f7d664 !important;
+  box-shadow: 0 0 0 0.25rem #f7d7644e !important;
+}

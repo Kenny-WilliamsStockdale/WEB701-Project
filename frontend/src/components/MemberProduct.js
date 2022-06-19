@@ -63,7 +63,7 @@ const MemberProduct = () => {
         <div className="col-md-12">
           <div className="card" id="card">
             <div className="card-header">
-              <h4>Products</h4>
+              <h4>Products Listed</h4>
             </div>
             <div className="card-body">
               <div className="table-responsive">

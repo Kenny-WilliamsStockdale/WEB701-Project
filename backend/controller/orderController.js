@@ -82,8 +82,8 @@ const viewOrder = async (req, res, next) => {
             message: 'User does not exist'
         });
     }
-    //find one order by tokenId
-    const order = await Orders.findOne({ tokenId: req.body.tokenId });
+    //find one order by productId
+    const order = await Orders.findOne({ productId: req.body.productId });
     if (!order) {
         return res.status(404).json({
             message: 'Order does not exist'
@@ -97,11 +97,29 @@ const viewOrder = async (req, res, next) => {
 }
 
 //@desc   claim order
-//@route  GET /order/claim/:id
+//@route  POST /order/claim/:id
 //@access Public
 //claim order
 const claimOrder = async (req, res, next) => {
-    res.status(200).send("Claim order stub")
+    const { emailAddress } = req.body;
+    const user = await Users.findOne({ emailAddress: emailAddress });
+    if (!user) {
+        return res.status(404).json({
+            message: 'User does not exist'
+        });
+    }
+    //find one order by productId and update statusCompleted to true
+    const order = await Orders.findOneAndUpdate({ productId: req.body.productId }, { $set: { statusCompleted: true } });
+    if (!order) {
+        return res.status(404).json({
+            message: 'Order does not exist'
+        });
+    }
+    res.status(200).json({
+        success: true,
+        data: order,
+        message: 'Order claimed'
+    })
 }
 
 /* -------------------------- ANCHOR module section ------------------------- */

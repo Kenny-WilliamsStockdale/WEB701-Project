@@ -8,7 +8,7 @@ import OrderDetailsBodyModal from './OrderDetailsBodyModal';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
-function OrderDetailsModal(token) {
+function OrderDetailsModal(productId) {
   const [show, setShow] = useState(false);
   const [error, setError] = useState('');
   const [OrderInfo, setOrderInfo] = useState([]);
@@ -22,7 +22,7 @@ function OrderDetailsModal(token) {
     axios
       .post('/order/view/', {
         emailAddress: userInfo.data.emailAddress,
-        tokenId: token.token
+        productId: productId.productId
       })
       //store response data to localStorage as set response data to state OrderInfo
       .then(res => {
@@ -37,22 +37,6 @@ function OrderDetailsModal(token) {
       }
       )
   }
-
-  //update order status
-  const updateOrderStatus = () => {
-    if (orderInfo.data.statusCompleted === false) {
-      orderInfo.data.statusCompleted = true;
-      localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
-      setOrderInfo(orderInfo);
-      //TODO:push info to database for update
-    } else {
-      orderInfo.data.statusCompleted = false;
-      localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
-      setOrderInfo(orderInfo);
-    }
-  }
-
-
   // modal
   return (
     <div>

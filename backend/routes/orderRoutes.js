@@ -41,9 +41,9 @@ router.delete('/delete/:id', deleteOrder)
 router.post('/view/', viewOrder)
 
 //@desc   claim order
-//@route  GET /order/claim/:id
+//@route  POST /order/claim/
 //@access Public
 //claim order
-router.get('/claim/:id', claimOrder)
+router.post('/claim/', claimOrder)
 
 module.exports = router;

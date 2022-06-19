@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+import UpdateClaimModal from './UpdateClaimModal';
 import './MemberProduct.css';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -22,7 +23,7 @@ const MemberProduct = () => {
       .then(res => {
         setProducts(res.data.data);
         localStorage.setItem('memberProducts', JSON.stringify(res.data.data));
-        console.log(res.data.data);
+
       }
       )
       .catch(err => {
@@ -83,7 +84,7 @@ const MemberProduct = () => {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.voucherPrice}</td>
-                      <td><Button variant="primary" onClick={updateClaimedStatus} >Update Claim</Button></td>
+                      <td><UpdateClaimModal product={product}/></td>
                     </tr></>
                   )
                 }

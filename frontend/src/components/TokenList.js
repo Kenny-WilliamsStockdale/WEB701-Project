@@ -22,7 +22,7 @@ const TokenList = () => {
       console.log(err);
     }
     )
-  // set token from user information
+  // set token code from user information
   useEffect(() => {
     setProductId(userInfo.data.productId);
   }, [])
@@ -52,7 +52,7 @@ const TokenList = () => {
                             <tr key={productId._id}>
                               <td>{productId}</td>
                               <td>
-                                <OrderDetailsModal token={productId} />
+                                <OrderDetailsModal productId={productId} />
                               </td>
                             </tr>
                           )

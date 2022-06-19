@@ -36,13 +36,13 @@ const userSchema = new mongoose.Schema({
         required: [true, "Is this user a beneficiary?"],
         default: false,
     },
-    vouchers: {
-        type: Number,
-        required: [false, "Vouchers"],
-    },
     tokens: {
-        type: [String],
+        type: Number,
         required: [false, "Tokens"],
+    },
+    productId: {
+        type: [String],
+        required: [false, "Product ID"],
         default: undefined,
     }
 },{

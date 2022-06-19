@@ -40,10 +40,20 @@ function CartModal() {
       const findProduct = ProductInfo.map(item => {
         return item.data;
       })
+
+      //get product _id and reduce array into string format for productId
+      const findProductId = ProductInfo.map(item => {
+        return item.data._id;
+      })
+      //findProductId array into string format for productId
+      const findProductIdString = findProductId.toString();
+
+
       // post to database
       axios
         .post('/order/newOrder', {
           emailAddress: userInfo.data.emailAddress,
+          productId: findProductIdString,
           product: findProduct,
           subtotal: findTotalPrice,
         })
@@ -82,6 +92,7 @@ function CartModal() {
           })
           .then(res => {
             console.log(res);
+
           }
           )
           .catch(err => {
@@ -89,9 +100,13 @@ function CartModal() {
           }
           )
       })
+      //minus a isBeneficiary token from their account
+      
+
+      // reload window after 2.5 seconds
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 2500);
     }
   }
   useEffect(() => {
@@ -163,7 +178,7 @@ function CartModal() {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="primary" onClick={() => {

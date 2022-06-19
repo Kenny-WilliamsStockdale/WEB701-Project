@@ -15,7 +15,6 @@ function OrderDetailsBodyModal() {
   return (
     <div>
       <h5>Order ID: {orderInfo.data._id}</h5>
-      <h5>Token: {orderInfo.data.tokenId}</h5>
       <h5>Order Products:</h5>
         {orderInfo.data.products.map(product => {
           return (
@@ -27,7 +26,7 @@ function OrderDetailsBodyModal() {
         }
         )}
       <h5>Order Status: {orderInfo.data.statusCompleted ? 'Completed' : 'Pending'}</h5>
-      <h5>Order Total: {orderInfo.data.subtotal}</h5>
+      <h5>Order Total: {orderInfo.data.subtotal} Tokens</h5>
     </div>
   )
 }

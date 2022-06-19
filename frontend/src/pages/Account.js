@@ -20,7 +20,7 @@ const Account = () => {
   const [emailAddress, setEmailAddress] = useState('');
   const [isMember, setIsMember] = useState(false);
   const [isBeneficiary, setIsBeneficiary] = useState(false);
-  const [vouchers, setVouchers] = useState([]);
+  const [tokens, setTokens] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
@@ -36,11 +36,8 @@ const Account = () => {
       })
       .then(res => {
         localStorage.removeItem('userInfo');
-        const refreshPage = () => {
-          navigate('/')
-        }
+        navigate('/')
         setMessage(res.data.message);
-        setTimeout(refreshPage, 2000)
       })
       .catch(err => {
         console.log(err);
@@ -52,7 +49,7 @@ const Account = () => {
     setLastName(userInfo.data.lastName);
     setUserName(userInfo.data.userName);
     setEmailAddress(userInfo.data.emailAddress);
-    setVouchers(userInfo.data.vouchers);
+    setTokens(userInfo.data.tokens);
   }, [])
 
   return (
@@ -95,7 +92,7 @@ const Account = () => {
                   </div>
                     <div className="form-group">
                       <label htmlFor="isBeneficiary">Tokens</label>
-                      <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.vouchers} onChange={(e) => setVouchers(e.target.value)} />
+                      <input readOnly type="text" className="form-control" id="isBeneficiary" placeholder="Enter Beneficiary Account" value={userInfo.data.tokens} onChange={(e) => setTokens(e.target.value)} />
                     </div></>
                     {/* list of orders */}
                   </>

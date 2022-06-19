@@ -7,16 +7,6 @@ const voucher_codes = require('voucher-code-generator');
 const Orders = require("../model/orders");
 const Users = require("../model/users");
 
-const createToken = () => {
-    const token = voucher_codes.generate({
-        length: 12,
-        count: 1,
-        pattern: '####-####-####-####',
-    })[0];
-
-    return token;
-}
-
 //@desc   get all orders
 //@route  GET /order/getAllOrders/
 //@access Public
@@ -44,16 +34,15 @@ const getAllOrders = async (req, res, next) => {
 
 // create order, find user and create order. Attach token to order
 const createOrder = async (req, res, next) => {
-    const { emailAddress, product, subtotal } = req.body;
-    const token = createToken();
-    const user = await Users.findOneAndUpdate({ emailAddress: emailAddress }, { $push: { tokens: token } });
+    const { emailAddress, productId, product, subtotal} = req.body;
+    const user = await Users.findOneAndUpdate({ emailAddress: emailAddress }, { $push: { productId: productId } });
     if (!user) {
         return res.status(404).json({
             message: 'User does not exist'
         });
     }
     const newOrder = new Orders({
-        tokenId: token,
+        productId:productId,
         products: product,
         subtotal: subtotal
     });

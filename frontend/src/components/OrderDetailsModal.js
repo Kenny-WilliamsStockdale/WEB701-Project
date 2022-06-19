@@ -67,11 +67,8 @@ function OrderDetailsModal(token) {
           <OrderDetailsBodyModal orderInfo={OrderInfo} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={ updateOrderStatus }>
-            Update order status
           </Button>
         </Modal.Footer>
       </Modal>

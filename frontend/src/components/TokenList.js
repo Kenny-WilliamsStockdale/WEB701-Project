@@ -8,7 +8,7 @@ import OrderDetailsModal from './OrderDetailsModal';
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
 const TokenList = () => {
-  const [tokens, setTokens] = useState([]);
+  const [productId, setProductId] = useState([]);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   // get user email address from database to update user and send to localStorage
@@ -24,7 +24,7 @@ const TokenList = () => {
     )
  // set token from user information
   useEffect(() => {
-    setTokens(userInfo.data.tokens);
+    setProductId(userInfo.data.productId);
   }, [])
 
   return (
@@ -40,13 +40,13 @@ const TokenList = () => {
                 </tr>
               </thead>
               <tbody>
-                {tokens ? (
-                  tokens.map(token => {
+                {productId ? (
+                  productId.map(productId => {
                     return (
-                      <tr key={token._id}>
-                        <td>{token}</td>
+                      <tr key={productId._id}>
+                        <td>{productId}</td>
                         <td>
-                          <OrderDetailsModal token={token} />
+                          <OrderDetailsModal token={productId} />
                         </td>
                       </tr>
                     )

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // defines the order schema
 const orderSchema = new mongoose.Schema({
-  tokenId: String,
+  productId: String,
   products: Object,
   subtotal:
   {

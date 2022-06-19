@@ -1,11 +1,10 @@
 /* -------------------------------------------------------------------------- */
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import Message from './Message';
-import OrderDetailsBodyModal from './OrderDetailsBodyModal';
 import './UpdateClaimModal.css';
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -19,8 +18,8 @@ function OrderDetailsModal(product) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
 
+  // get list of orders from database relating to current user
   const ShowOrder = () => {
     axios
       .post('/order/view/', {

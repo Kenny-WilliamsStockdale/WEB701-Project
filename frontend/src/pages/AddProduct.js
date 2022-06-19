@@ -2,7 +2,6 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Loading from '../components/Loader'
 import Message from '../components/Message'
@@ -12,23 +11,22 @@ import './AddProduct.css'
 /*                               Layout Section                               */
 /* -------------------------------------------------------------------------- */
 const AddProduct = () => {
-  const navigate = useNavigate()
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [voucherPrice, setVoucherPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [category, setCategory] = useState('');
-  const [memberId, setMemberId] = useState('');
-  const [claimedStatus, setClaimedStatus] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
+  // add product to the shop
   const handleAddProductSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    //check to make sure all fields are not empty
     if (name === '' || description === '' || voucherPrice === '' || imageUrl === '' || category === '') {
       setError('Please fill in all the fields')
       setLoading(false);

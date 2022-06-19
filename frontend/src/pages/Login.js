@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
-import React, { useState, useContext } from 'react'
+import React, { useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Message from '../components/Message';
 import Loading from '../components/Loader';
@@ -19,6 +19,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  //login
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);

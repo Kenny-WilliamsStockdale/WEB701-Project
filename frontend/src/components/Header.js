@@ -3,8 +3,7 @@
 /* -------------------------------------------------------------------------- */
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown, Container, NavLink } from 'react-bootstrap';
-import axios from 'axios';
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import CartModal from './CartComponent';
 import logo from '../Imgs/logo1.png';
 import './Header.css'

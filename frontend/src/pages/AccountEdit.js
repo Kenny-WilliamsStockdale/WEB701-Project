@@ -2,9 +2,8 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import Loading from '../components/Loader'
 import Message from '../components/Message'
 import './AccountEdit.css'
 /* -------------------------------------------------------------------------- */
@@ -33,8 +32,9 @@ const AccountEdit = () => {
       password: password,
       confirmPassword: confirmPassword
     }
-    // check if password and confirm password match
-    if (password == confirmPassword && password.length >= 8 && confirmPassword.length >= 8) {
+    //edit the user account details
+    // check if password and confirm password match before saving changes to the database
+    if (password === confirmPassword && password.length >= 8 && confirmPassword.length >= 8) {
     axios
       .put('/user/editUser/', data)
       .then(res => {

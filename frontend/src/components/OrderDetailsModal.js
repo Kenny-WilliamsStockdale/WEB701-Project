@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import OrderDetailsBodyModal from './OrderDetailsBodyModal';
@@ -10,12 +10,11 @@ import OrderDetailsBodyModal from './OrderDetailsBodyModal';
 /* -------------------------------------------------------------------------- */
 function OrderDetailsModal(productId) {
   const [show, setShow] = useState(false);
-  const [error, setError] = useState('');
+  const [error,setError] = useState('');
   const [OrderInfo, setOrderInfo] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
 
   // get list of orders from database relating to current user
   const ViewOrder = () => {

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductComponent from "../components/ProductComponent";
 import Loading from "../components/Loader";
-import { Card, Button } from "react-bootstrap"
 import "./Product.css";
 /* -------------------------------------------------------------------------- */
 /*                               Layout Section                               */
@@ -16,7 +15,7 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
+  //get products from the database to display
   useEffect(() => {
     const fetchData = async () => {
       try {

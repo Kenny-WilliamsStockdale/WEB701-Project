@@ -35,28 +35,6 @@ const MemberProduct = () => {
     getProducts();
   }
     , [])
-
-  // console.log(memberProducts.map(product => {
-  //   return product;
-  // }
-  // )
-  // )
-  //update claimed status of product
-  //TODO:push info to database for update to be pulled again (conceptual at the moment)
-  const updateClaimedStatus = () => {
-    memberProducts.map(product => {
-      if (product.claimedStatus === false) {
-        product.claimedStatus = true;
-        localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
-      }
-      else {
-        product.claimedStatus = false;
-        localStorage.setItem('memberProducts', JSON.stringify(memberProducts));
-      }
-    }
-    )
-  }
-
   return (
     // card list for products
     <div className="container">

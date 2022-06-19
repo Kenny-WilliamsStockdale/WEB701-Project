@@ -11,7 +11,7 @@ const TokenList = () => {
   const [productId, setProductId] = useState([]);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-  // get user email address from database to update user and send to localStorage
+  // get user email address from database to update user and send to localStorage/ use to populate order details
   axios
     .post('/user/', { emailAddress: userInfo.data.emailAddress })
     .then(res => {

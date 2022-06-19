@@ -5,7 +5,7 @@ import React from 'react'
 import { FaGgCircle } from 'react-icons/fa';
 import { FaGratipay } from 'react-icons/fa';
 import { FaMegaport } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import landingPic from '../Imgs/landing-picture.jpg'
 import './Landing.css'
 /* -------------------------------------------------------------------------- */
@@ -36,7 +36,7 @@ const Landing = () => {
         <button className="btn btn-primary btn-lg" id="landing-shopNow-btn" onClick={guardedRoute}>Shop Now</button>
       </div>
       <div className="landing-pic-container">
-        <img className="landing-pic" src={landingPic} />
+        <img className="landing-pic" alt="landing-pic" src={landingPic} />
       </div>
     </div>
       <div className="landing-mid">

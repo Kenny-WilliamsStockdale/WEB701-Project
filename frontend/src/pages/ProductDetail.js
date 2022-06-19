@@ -2,7 +2,7 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../components/Loader';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -29,8 +29,6 @@ const ProductDetails = () => {
       }
       if (cart.length >= 1)
         setError('Cart already contains a product');
-      // cart.push(product);
-      // localStorage.setItem('cart', JSON.stringify(cart));
     } else {
       // set timeout and add item to cart
       localStorage.setItem('cart', JSON.stringify([product]));

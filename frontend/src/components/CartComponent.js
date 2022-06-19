@@ -2,8 +2,6 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import Loading from './Loader';
 import Message from './Message';
 import { Button, Modal, Nav } from 'react-bootstrap';
 
@@ -16,7 +14,6 @@ function CartModal() {
   const [cart, setCart] = useState([]);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [emailAddress, setEmailAddress] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ProductInfo = JSON.parse(localStorage.getItem('cart'));
@@ -36,7 +33,7 @@ function CartModal() {
       })
       const findTotalPrice = findVoucherPrice.reduce((a, b) => a + b, 0);
 
-      //get product
+      //get product from new array
       const findProduct = ProductInfo.map(item => {
         return item.data;
       })

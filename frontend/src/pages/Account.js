@@ -2,9 +2,8 @@
 /*                               Import Section                               */
 /* -------------------------------------------------------------------------- */
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import Loading from '../components/Loader'
 import Message from '../components/Message'
 import TokenList from '../components/TokenList'
 import './Account.css'
@@ -22,8 +21,9 @@ const Account = () => {
   const [isBeneficiary, setIsBeneficiary] = useState(false);
   const [tokens, setTokens] = useState([]);
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [error] = useState('');
 
+  // delete user
   const deleteUser = () => {
     axios
       .delete('/user/deleteUser/', {

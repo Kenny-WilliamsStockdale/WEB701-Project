@@ -72,8 +72,7 @@ const MemberProduct = () => {
                     <tr>
                     <th scope="col">ProductID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Voucher Price</th>
-                    <th scope="col">Product Claimed?</th>
+                    <th scope="col">Token Price</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,7 +83,6 @@ const MemberProduct = () => {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.voucherPrice}</td>
-                      <td>{product.claimedStatus ? 'Yes' : 'No'}</td>
                       <td><Button variant="primary" onClick={updateClaimedStatus} >Update Claim</Button></td>
                     </tr></>
                   )

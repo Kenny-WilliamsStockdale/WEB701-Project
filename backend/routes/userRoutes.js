@@ -3,6 +3,7 @@ router = express.Router();
 
 const {
     registerUser,
+    resetTokens,
     showAccount,
     getUser,
     loginUser,
@@ -17,6 +18,12 @@ const {
 //@access Public
 // Register new user
 router.post('/register', registerUser)
+
+//@desc   get all users and reset their tokens after time limit
+//@route  POST /resetToken/
+//@access Public
+// get all users and reset their tokens after time limit
+router.post('/resetToken/', resetTokens)
 
 //@desc   view account
 //@route  GET /user/account/:userEmail

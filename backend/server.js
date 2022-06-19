@@ -1,4 +1,4 @@
-require("dotenv").config({path: './../.env'});
+require("dotenv").config({ path: './../.env' });
 const express = require('express');
 const app = express();
 const connectDB = require('./db')
@@ -15,7 +15,8 @@ const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes')
 const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes')
-const categoryRoutes = require('./routes/categoryRoutes')
+const categoryRoutes = require('./routes/categoryRoutes');
+const { resetTokens } = require("./controller/userController");
 
 /* --------------------------------- routes --------------------------------- */
 //list of user
@@ -40,3 +41,19 @@ app.get('/', (req, res) => {
 // Use port 5001 and display backend information
 app.listen(5001, console.log("Server started on PORT 5001"));
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// const to calculate an hour in milliseconds
+const month = 1000 * 60 * 60;
+
+// recursive function to reset isBeneficiary tokens.
+// This should be set for a month but for the purposes of a local machine server it is set to trigger on the hour.
+function tokenReset() {
+    sleep(month).then(() => {
+        resetTokens();
+        tokenReset();
+    })
+}
+tokenReset();

@@ -4,6 +4,7 @@
 //TODO: Test all routes STATUS: Working
 const Users = require('../model/users');
 const bcrypt = require('bcrypt');
+const asyncHandler = require('express-async-handler');
 
 
 //@desc   create new user and encrypt the password
@@ -90,13 +91,27 @@ const registerUser = async (req, res, next) => {
     }
 }
 
+//@desc   get all users and reset their tokens after time limit
+//@route  POST /user/resetToken/
+//@access Public
+// get all users and reset their tokens after time limit
+const resetTokens = asyncHandler(async (req, res, next) => {
+    Users.findOneAndUpdate(
+        { isBeneficiary: true },
+        { $set: { tokens: 10 } })
+        .then((users) => {
+        }
+        )
+        .catch((err) => next(err));
+})
+
 //@desc   get user by email address
 //@route  GET /user/:userEmail
 //@access Public
 // get user by email address
 const getUser = async (req, res, next) => {
     const { emailAddress } = req.body;
-    Users.findOne({emailAddress})
+    Users.findOne({ emailAddress })
         .then((user) => {
             if (!user) {
                 return res.status(404).json({
@@ -297,6 +312,7 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     registerUser,
+    resetTokens,
     showAccount,
     getUser,
     loginUser,

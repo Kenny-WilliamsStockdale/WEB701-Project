@@ -14,10 +14,10 @@ The markdown (.md) versions of the reports is the best for viewing.
 The project planning Trello can be found here:https://trello.com/b/WsMGDNlb/web701-project
 
 ## How to start the application
-`npm install` - to make sure you have the necessary npm modules.
+`npm install` - to make sure you have the necessary npm modules. Do this command in the root file and in the `cd .. frontend/` file
 1. Use `npm start` to launch the backend application only.
 2. Use `npm run client` to launch the frontend application only.
-3. Use `npm run dev` to launch both backend and frontend applications concurrently.
+3. Use `npm run dev` to launch both backend and frontend applications concurrently. Use this one primarily.
 
 Check .env file reads the following:
 
